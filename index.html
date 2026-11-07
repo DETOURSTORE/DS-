@@ -133,6 +133,27 @@
       color: var(--accent-pink);
     }
 
+    /* Player de Música Flutuante no Canto Inferior */
+    .music-player-container {
+      position: fixed;
+      bottom: 16px;
+      right: 16px;
+      z-index: 100;
+      background: var(--controls-bg);
+      border: 2px solid var(--accent-blue);
+      border-radius: 20px;
+      padding: 6px 10px;
+      box-shadow: 0 4px 15px rgba(59, 157, 235, 0.25);
+      backdrop-filter: blur(4px);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .music-player-container audio {
+      height: 30px;
+      max-width: 180px;
+    }
+
     body::before, body::after {
       position: fixed;
       font-size: 24px;
@@ -312,6 +333,15 @@
     <button class="lang-btn" onclick="changeLanguage('ko')" title="한국어">KR</button>
   </div>
 
+  <!-- Player de Música Flutuante no Canto Inferior Direito -->
+  <div class="music-player-container notranslate">
+    <span style="font-size: 14px;">🎵</span>
+    <audio controls loop>
+      <source src="musica.mp3" type="audio/mpeg">
+      Seu navegador não suporta áudio HTML5.
+    </audio>
+  </div>
+
   <div style="padding: 48px 0; width: 100%; position: relative; z-index: 2;">
     <header style="padding: 0 24px; margin-bottom: 32px;">
       
@@ -382,7 +412,7 @@
         
         <p><strong>→ Responsabilidades do Cliente:</strong><br>É fundamental fornecer informações precisas e completas sobre o pedido, verificando todos os dados antes de finalizar (conta Roblox, valores, método de pagamento). Recomendamos a leitura completa dos termos de compra. Erros decorrentes de informações incorretas fornecidas pelo cliente não são nossa responsabilidade.</p>
         
-        <p><strong>→ Responsabilidade da Equipe Detour:</strong><br>Oferecemos tratamento respeitoso, cordial e profissional em todas as interações, com atenção individualizada focada na resolução eficiente de suas necessidades. Cumprimos rigorosamente os prazos estabelecidos e garantimos proteção integral dos seus dados pessoais e informações de conta. Não comercializamos, compartilhamos ou divulgamos dados a terceiros.</p>
+        <p><strong>→ Responsabilidade da Equipe Detour:</strong><br>Oferecemos tratamento respeitoso, cordial e profissional em todas as interações, com atenção individualizada focada na resolução eficiente de suas necessidades. Cumprimos rigorosamente os prazos establishedos e garantimos proteção integral dos seus dados pessoais e informações de conta. Não comercializamos, compartilhamos ou divulgamos dados a terceiros.</p>
         
         <p style="font-size: 13px; text-align: center; font-weight: 700; color: var(--accent-pink); margin-top: 18px;">
           Agradecemos pela confiança e preferência! 𖹭.ᐟ
@@ -414,7 +444,7 @@
     </div>
   </div>
 
-  <!-- Pop-up 3: Loja Parceira (Links Atualizados) -->
+  <!-- Pop-up 3: Loja Parceira -->
   <div id="parceira-modal" class="modal">
     <div class="modal-content" style="text-align: center;">
       <a href="#" class="modal-close">✕</a>
