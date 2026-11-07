@@ -152,17 +152,18 @@
     .display { font-family: 'Fraunces', serif; }
     .eyebrow { letter-spacing: .22em; text-transform: uppercase; font-size: 11px; font-weight: 700; color: var(--accent); }
     
+    /* Moldura Quadrada para a Logo */
     .portrait-wrap { 
       position: relative; 
-      width: 180px; 
-      height: 180px; 
+      width: 200px; 
+      height: 200px; 
       margin: 0 auto; 
       z-index: 2;
     }
     .portrait-wrap img {
       width: 100%;
       height: 100%;
-      border-radius: 50%;
+      border-radius: 20px; /* BORDAS QUADRADAS COM LIGEIRO ARREDONDAMENTO */
       object-fit: cover;
       box-shadow: 0 6px 25px rgba(43, 136, 216, 0.25);
       border: 4px solid var(--bg-card);
@@ -322,7 +323,7 @@
   <div style="padding: 48px 0; width: 100%; position: relative; z-index: 2;">
     <header style="padding: 0 24px; margin-bottom: 32px;">
       
-      <!-- Foto da loja redonda -->
+      <!-- Foto da loja quadrada -->
       <div class="portrait-wrap" style="margin-bottom: 24px;">
         <img src="logo.png" alt="Logo DETOUR STORE">
       </div>
@@ -368,6 +369,12 @@
         <span class="badge">PIX</span>
       </a>
 
+      <!-- Botão Loja Parceira -->
+      <a href="#parceira-modal" class="link-card">
+        <span>🤝 Loja Parceira</span>
+        <span class="badge">Ver</span>
+      </a>
+
     </main>
   </div>
 
@@ -392,9 +399,9 @@
         <p><strong>→ Organização:</strong> Utilize os canais corretos para cada assunto e ajude a manter o servidor organizado.</p>
         <p><strong>→ Links:</strong> Evite enviar links para a segurança de todos. Não são permitidos links de outros servidores. Também não compartilhe conteúdos inadequados, como links suspeitos, imagens impróprias ou assuntos sensíveis.</p>
         <p><strong>→ Punição:</strong> O descumprimento das regras resultará em punições. Em caso de contestação de punições aplicadas pela equipe, a decisão será mantida. Siga as regras, respeite as orientações e assuma a responsabilidade por eventuais infrações.</p>
-        <p><strong>→ Vendas:</strong> Vendas são proibidas dentro do servidor. Caso alguém realize vendas, será applied 1 aviso (warn). Caso se repita, o usuário será banido.</p>
+        <p><strong>→ Vendas:</strong> Vendas são proibidas dentro do servidor. Caso alguém realize vendas, será aplicado 1 aviso (warn). Caso se repita, o usuário será banido.</p>
         <p><strong>→ Plágio:</strong> É proibido qualquer tipo de cópia/plágio dos conteúdos da DETOUR STORE.</p>
-        <p><strong>→ Divulgação:</strong> Divulgação de outras lojas, servidores ou contas (como TikTok) não é permitida dentro do servidor. Caso ocorra, será aplicado 1 warn (aviso) e caso obtenha 3 warns resultará em mute.</p>
+        <p><strong>→ Divulgação:</strong> Divulgação de outras lojas, servidores ou contas (como TikTok) não é permitida dentro do servidor. Caso ocorra, será applied 1 warn (aviso) e caso obtenha 3 warns resultará em mute.</p>
       </div>
     </div>
   </div>
@@ -446,6 +453,27 @@
 
       <!-- Botão Copiar -->
       <button class="copy-btn" onclick="copyPixKey()">📋 Copiar Chave PIX</button>
+    </div>
+  </div>
+
+  <!-- Pop-up 4: Loja Parceira -->
+  <div id="parceira-modal" class="modal">
+    <div class="modal-content" style="text-align: center;">
+      <a href="#" class="modal-close">✕</a>
+      
+      <h2 class="display" style="font-size: 20px; font-weight: bold; margin-bottom: 12px; color: var(--accent);"> L&amp;M SHOP </h2>
+      
+      <p style="font-size: 13px; color: var(--muted); margin-bottom: 16px;">
+        Conheça a nossa loja parceira oficial! Clique nos botões abaixo para acessar o Discord e o TikTok recomendado:
+      </p>
+
+      <div class="space-y" style="margin-bottom: 20px;">
+        <p><strong>🌸 L&amp;M SHOP</strong></p>
+        <p style="font-size: 12px;">Qualidade e confiança garantidas pela equipe DETOUR STORE! 𖹭.ᐟ</p>
+      </div>
+
+      <a href="https://discord.gg/aGSDnmpuw" target="_blank" rel="noopener noreferrer" class="copy-btn" style="display: block; text-decoration: none; margin-bottom: 10px;">✉ Servidor no Discord</a>
+      <a href="https://www.tiktok.com/@lm.shopp__" target="_blank" rel="noopener noreferrer" class="copy-btn" style="display: block; text-decoration: none; background: #000000;">♫ TikTok L&amp;M SHOP</a>
     </div>
   </div>
 
