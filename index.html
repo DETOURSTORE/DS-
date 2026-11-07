@@ -466,30 +466,34 @@
     const audio = document.getElementById('bgAudio');
     const musicBtn = document.getElementById('musicBtn');
 
-    // Toca a música automaticamente assim que entra no site
+    // Inicia a música com som ativado imediatamente ao carregar
     window.addEventListener('DOMContentLoaded', () => {
+      audio.muted = false;
       audio.play().then(() => {
         musicBtn.textContent = '🎵';
       }).catch(() => {
-        // Se o navegador bloquear o som automático antes de clicar na tela
+        // Se o navegador bloquear o som automático, começa em mudo e ativa no primeiro clique do usuário
+        audio.muted = true;
+        audio.play();
         musicBtn.textContent = '🔇';
-        document.addEventListener('click', () => {
-          if (audio.paused) {
-            audio.play();
-            musicBtn.textContent = '🎵';
-          }
-        }, { once: true });
+        
+        const enableSound = () => {
+          audio.muted = false;
+          musicBtn.textContent = '🎵';
+          document.removeEventListener('click', enableSound);
+        };
+        document.addEventListener('click', enableSound);
       });
     });
 
-    // Função que muta ou desmuta quando clica no botão de música
+    // Função para alternar o áudio via botão
     function toggleMusic() {
       if (audio.paused || audio.muted) {
         audio.muted = false;
         audio.play();
         musicBtn.textContent = '🎵';
       } else {
-        audio.pause();
+        audio.muted = true;
         musicBtn.textContent = '🔇';
       }
     }
