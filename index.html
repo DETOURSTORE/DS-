@@ -11,37 +11,41 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;family=Fraunces:opsz,wght@9..144,400;500;600&amp;display=swap" rel="stylesheet">
   <style>
     :root {
-      /* Tema Claro (Azul Bebê) */
-      --ink: #1e3a5f;
-      --muted: #4a6b82;
-      --accent: #2b88d8;
+      /* Tema Claro (Rosa + Azul Bebê) */
+      --ink: #4a2e43;
+      --muted: #6e5267;
+      --accent-blue: #3b9deb;
+      --accent-pink: #f06292;
+      --accent: #e91e63;
       --line: #b3d7ff;
       --bg-card: #ffffff;
-      --bg-main: #f0f7ff;
-      --bg-dot-1: #cce3fe;
-      --bg-dot-2: #a4d0ff;
-      --badge-bg: #e1f0ff;
-      --footer-bg: #d0e6ff;
-      --modal-overlay: rgba(30, 58, 95, 0.6);
+      --bg-main: #f4f8ff;
+      --bg-dot-1: #fbcfe8;
+      --bg-dot-2: #bae6fd;
+      --badge-bg: #e0f2fe;
+      --footer-bg: #e0f2fe;
+      --modal-overlay: rgba(30, 41, 59, 0.6);
       --controls-bg: #ffffff;
-      --lang-btn-color: #1e3a5f;
+      --lang-btn-color: #3b9deb;
     }
 
-    /* Tema Escuro (Inverso em Tons de Azul Noturno) */
+    /* Tema Escuro (Inverso Noturno com gradientes em tons suaves) */
     body.dark-mode {
-      --ink: #d0e6ff;
-      --muted: #8cb4d8;
-      --accent: #5ab0ff;
-      --line: #1d385c;
-      --bg-card: #122238;
-      --bg-main: #0a1424;
-      --bg-dot-1: #182e4a;
-      --bg-dot-2: #203c61;
-      --badge-bg: #1a3352;
-      --footer-bg: #0f1d30;
-      --modal-overlay: rgba(5, 12, 24, 0.8);
-      --controls-bg: #ffffff;
-      --lang-btn-color: #2b88d8;
+      --ink: #f1f5f9;
+      --muted: #cbd5e1;
+      --accent-blue: #60a5fa;
+      --accent-pink: #f472b6;
+      --accent: #f472b6;
+      --line: #334155;
+      --bg-card: #1e293b;
+      --bg-main: #0f172a;
+      --bg-dot-1: #831843;
+      --bg-dot-2: #1e3a8a;
+      --badge-bg: #1e3a8a;
+      --footer-bg: #0f172a;
+      --modal-overlay: rgba(15, 23, 42, 0.8);
+      --controls-bg: #1e293b;
+      --lang-btn-color: #60a5fa;
     }
 
     * { box-sizing: border-box; }
@@ -79,12 +83,12 @@
       top: 16px;
       left: 16px;
       background: var(--controls-bg);
-      border: 2px solid var(--accent);
+      border: 2px solid var(--accent-blue);
       border-radius: 9999px;
       padding: 6px 12px;
       font-size: 16px;
       cursor: pointer;
-      box-shadow: 0 4px 12px rgba(43, 136, 216, 0.2);
+      box-shadow: 0 4px 12px rgba(59, 157, 235, 0.2);
       z-index: 100;
       backdrop-filter: blur(4px);
       transition: transform 0.2s ease, background 0.3s ease;
@@ -106,8 +110,8 @@
       background: var(--controls-bg);
       padding: 6px 12px;
       border-radius: 9999px;
-      border: 2px solid var(--accent);
-      box-shadow: 0 4px 12px rgba(43, 136, 216, 0.2);
+      border: 2px solid var(--accent-pink);
+      box-shadow: 0 4px 12px rgba(240, 98, 146, 0.2);
       z-index: 100;
       backdrop-filter: blur(4px);
       transition: background 0.3s ease;
@@ -126,7 +130,7 @@
     }
     .lang-btn:hover {
       transform: scale(1.2);
-      color: var(--accent);
+      color: var(--accent-pink);
     }
 
     body::before, body::after {
@@ -137,25 +141,26 @@
       z-index: 1;
     }
     body::before {
-      content: "❄️ 🩵 ✨ ❄️";
+      content: "🌸 🩵 ✨ 🌸";
       top: 20px;
       left: 70px;
       letter-spacing: 15px;
     }
     body::after {
-      content: "❄️ ✨ 🩵 ❄️";
+      content: "🩵 ✨ 🌸 🩵";
       top: 20px;
       right: 300px;
       letter-spacing: 15px;
     }
 
     .display { font-family: 'Fraunces', serif; }
-    .eyebrow { letter-spacing: .22em; text-transform: uppercase; font-size: 11px; font-weight: 700; color: var(--accent); }
+    .eyebrow { letter-spacing: .22em; text-transform: uppercase; font-size: 11px; font-weight: 700; color: var(--accent-pink); }
     
-    /* Moldura Quadrada para a Logo */
+    /* Container da Imagem Maior e Retangular */
     .portrait-wrap { 
       position: relative; 
-      width: 200px; 
+      width: 100%;
+      max-width: 360px; 
       height: 200px; 
       margin: 0 auto; 
       z-index: 2;
@@ -163,11 +168,11 @@
     .portrait-wrap img {
       width: 100%;
       height: 100%;
-      border-radius: 20px;
+      border-radius: 16px;
       object-fit: cover;
-      box-shadow: 0 6px 25px rgba(43, 136, 216, 0.25);
+      box-shadow: 0 8px 25px rgba(240, 98, 146, 0.25);
       border: 4px solid var(--bg-card);
-      outline: 2px solid var(--accent);
+      outline: 3px solid var(--accent-blue);
       display: block;
       transition: border-color 0.3s ease;
     }
@@ -198,16 +203,16 @@
       transition: all 0.25s ease;
     }
     .link-card:hover {
-      background-color: var(--accent);
+      background: linear-gradient(135deg, var(--accent-blue), var(--accent-pink));
       color: #ffffff;
-      border-color: var(--accent);
+      border-color: transparent;
       transform: translateY(-3px);
-      box-shadow: 0 8px 20px rgba(43, 136, 216, 0.25);
+      box-shadow: 0 8px 20px rgba(240, 98, 146, 0.3);
     }
     .link-card .badge {
       font-size: 11px;
       background: var(--badge-bg);
-      color: var(--accent);
+      color: var(--accent-blue);
       padding: 2px 10px;
       border-radius: 12px;
       font-weight: 700;
@@ -216,7 +221,7 @@
     }
     .link-card:hover .badge {
       background: #ffffff;
-      color: var(--accent);
+      color: var(--accent-pink);
     }
 
     /* Modais / Pop-ups */
@@ -253,7 +258,7 @@
       top: 16px;
       right: 16px;
       background: var(--badge-bg);
-      color: var(--accent);
+      color: var(--accent-pink);
       border: none;
       width: 32px;
       height: 32px;
@@ -267,25 +272,12 @@
       transition: background 0.2s;
     }
     .modal-close:hover {
-      background: var(--accent);
+      background: var(--accent-pink);
       color: #ffffff;
     }
 
-    /* Caixa de PIX estilizada */
-    .pix-box {
-      background: var(--badge-bg);
-      border: 2px dashed var(--accent);
-      border-radius: 16px;
-      padding: 12px;
-      text-align: center;
-      margin: 16px 0;
-      word-break: break-all;
-      font-weight: 700;
-      color: var(--accent);
-    }
-
     .copy-btn {
-      background: var(--accent);
+      background: linear-gradient(135deg, var(--accent-blue), var(--accent-pink));
       color: #ffffff;
       border: none;
       padding: 10px 20px;
@@ -323,7 +315,7 @@
   <div style="padding: 48px 0; width: 100%; position: relative; z-index: 2;">
     <header style="padding: 0 24px; margin-bottom: 32px;">
       
-      <!-- Foto da loja quadrada com logo.webp -->
+      <!-- Foto da loja retangular e maior -->
       <div class="portrait-wrap" style="margin-bottom: 24px;">
         <img src="logo.webp" alt="Logo DETOUR STORE">
       </div>
@@ -363,12 +355,6 @@
         <span class="badge">Ler</span>
       </a>
 
-      <!-- Botão Doações -->
-      <a href="#pix-modal" class="link-card">
-        <span>🩵 Apoiar </span>
-        <span class="badge">PIX</span>
-      </a>
-
       <!-- Botão Loja Parceira -->
       <a href="#parceira-modal" class="link-card">
         <span>🤝 Loja Parceira</span>
@@ -383,7 +369,7 @@
     <div class="modal-content">
       <a href="#" class="modal-close">✕</a>
       
-      <h2 class="display" style="font-size: 20px; font-weight: bold; margin-bottom: 16px; text-align: center; color: var(--accent);">╭🩵 ┈┈ ꒰ REGRAS DO SERVER ꒱ ┈┈ 🩵╮</h2>
+      <h2 class="display" style="font-size: 20px; font-weight: bold; margin-bottom: 16px; text-align: center; color: var(--accent-pink);">╭🩵 ┈┈ ꒰ REGRAS DO SERVER ꒱ ┈┈ 🌸╮</h2>
       
       <p style="font-size: 12px; margin-bottom: 16px; text-align: center; color: var(--muted);">
         As regras existem para manter o servidor organizado, seguro e agradável para todos. O descumprimento resultará em punições. Pedimos que leia com atenção.
@@ -411,7 +397,7 @@
     <div class="modal-content">
       <a href="#" class="modal-close">✕</a>
       
-      <h2 class="display" style="font-size: 20px; font-weight: bold; margin-bottom: 16px; text-align: center; color: var(--accent);">𝒓𝒆𝒈𝒓𝒂𝒔 𝒅𝒐 𝒔𝒆𝒓𝒗𝒊𝒅𝒐𝒓 ‧₊˚・</h2>
+      <h2 class="display" style="font-size: 20px; font-weight: bold; margin-bottom: 16px; text-align: center; color: var(--accent-pink);">𝒓𝒆𝒈𝒓𝒂𝒔 𝒅𝒐 𝒔𝒆𝒓𝒗𝒊𝒅𝒐𝒓 ‧₊˚・</h2>
       
       <div class="space-y">
         <p><strong>01. Respeite todos:</strong> Trate todos os membros com educação e respeito. Não serão tolerados preconceito, discriminação, assédio ou ofensas.</p>
@@ -422,45 +408,19 @@
         <p><strong>06. Respeite a equipe:</strong> Siga as orientações da equipe de moderação. Caso tenha algum problema, entre em contato com um moderador.</p>
         <p><strong>07. Siga as diretrizes do Discord:</strong> Todos devem respeitar os Termos de Serviço e as Diretrizes da Comunidade do Discord.</p>
         
-        <p style="font-size: 12px; text-align: center; font-weight: 600; color: var(--accent); margin-top: 16px;">
+        <p style="font-size: 12px; text-align: center; font-weight: 600; color: var(--accent-pink); margin-top: 16px;">
           O descumprimento dessas regras pode ocasionar em punições.<br>Sejam bem-vindos a Detour Store! 𖹭.ᐟ
         </p>
       </div>
     </div>
   </div>
 
-  <!-- Pop-up 3: Doações / PIX -->
-  <div id="pix-modal" class="modal">
-    <div class="modal-content" style="text-align: center;">
-      <a href="#" class="modal-close">✕</a>
-      
-      <h2 class="display" style="font-size: 20px; font-weight: bold; margin-bottom: 12px; color: var(--accent);">🩵 Apoie a DETOUR STORE 🩵</h2>
-      
-      <p style="font-size: 13px; color: var(--muted); margin-bottom: 16px;">
-        Gosta da nossa loja? Se quiser nos apoiar com qualquer valor via PIX, agradecemos imensamente! ❄️
-      </p>
-
-      <!-- Imagem do QR Code -->
-      <div style="margin: 0 auto 16px; max-width: 200px; background: #ffffff; padding: 12px; border-radius: 16px; border: 2px solid var(--line);">
-        <img src="QR CODE.webp" alt="QR Code PIX DETOUR STORE" style="width: 100%; height: auto; display: block; border-radius: 8px;">
-      </div>
-
-      <!-- Chave PIX -->
-      <div class="pix-box notranslate" id="pixKey">
-        lmshop2006@gmail.com
-      </div>
-
-      <!-- Botão Copiar -->
-      <button class="copy-btn" onclick="copyPixKey()">📋 Copiar Chave PIX</button>
-    </div>
-  </div>
-
-  <!-- Pop-up 4: Loja Parceira -->
+  <!-- Pop-up 3: Loja Parceira -->
   <div id="parceira-modal" class="modal">
     <div class="modal-content" style="text-align: center;">
       <a href="#" class="modal-close">✕</a>
       
-      <h2 class="display" style="font-size: 20px; font-weight: bold; margin-bottom: 12px; color: var(--accent);"> L&amp;M SHOP </h2>
+      <h2 class="display" style="font-size: 20px; font-weight: bold; margin-bottom: 12px; color: var(--accent-pink);"> L&amp;M SHOP </h2>
       
       <p style="font-size: 13px; color: var(--muted); margin-bottom: 16px;">
         Conheça a nossa loja parceira oficial! Clique nos botões abaixo para acessar o Discord e o TikTok recomendado:
@@ -477,23 +437,13 @@
   </div>
 
   <footer>
-    <p style="font-size: 12px; font-weight: 500; color: var(--muted); margin: 0;">❄️ DETOUR STORE ❄️</p>
+    <p style="font-size: 12px; font-weight: 500; color: var(--muted); margin: 0;">🌸 DETOUR STORE 🩵</p>
   </footer>
 
   <!-- Elemento invisível do Google Tradutor -->
   <div id="google_translate_element" style="display:none;"></div>
 
   <script type="text/javascript">
-    /* Função de Copiar Chave PIX */
-    function copyPixKey() {
-      const pixKey = "lmshop2006@gmail.com";
-      navigator.clipboard.writeText(pixKey).then(() => {
-        alert("Chave PIX copiada com sucesso 𖹭.ᐟ");
-      }).catch(err => {
-        console.error("Erro ao copiar: ", err);
-      });
-    }
-
     /* Função de Alternar Modo Escuro */
     function toggleTheme() {
       const body = document.body;
