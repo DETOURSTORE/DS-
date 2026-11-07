@@ -77,11 +77,19 @@
     .skiptranslate { display: none !important; }
     body { top: 0px !important; }
 
-    /* Botão de Modo Escuro no Canto Superior Esquerdo */
-    .theme-toggle-btn {
+    /* Container de Controles do Canto Superior Esquerdo (Modo Escuro + Música) */
+    .left-controls-container {
       position: fixed;
       top: 16px;
       left: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      z-index: 100;
+    }
+
+    /* Botão de Modo Escuro e Botão de Música */
+    .theme-toggle-btn, .music-toggle-btn {
       background: var(--controls-bg);
       border: 2px solid var(--accent-blue);
       border-radius: 9999px;
@@ -89,14 +97,17 @@
       font-size: 16px;
       cursor: pointer;
       box-shadow: 0 4px 12px rgba(59, 157, 235, 0.2);
-      z-index: 100;
       backdrop-filter: blur(4px);
       transition: transform 0.2s ease, background 0.3s ease;
       display: flex;
       align-items: center;
       justify-content: center;
     }
-    .theme-toggle-btn:hover {
+    .music-toggle-btn {
+      border-color: var(--accent-pink);
+      box-shadow: 0 4px 12px rgba(240, 98, 146, 0.2);
+    }
+    .theme-toggle-btn:hover, .music-toggle-btn:hover {
       transform: scale(1.1);
     }
 
@@ -133,27 +144,6 @@
       color: var(--accent-pink);
     }
 
-    /* Player de Música Flutuante no Canto Inferior */
-    .music-player-container {
-      position: fixed;
-      bottom: 16px;
-      right: 16px;
-      z-index: 100;
-      background: var(--controls-bg);
-      border: 2px solid var(--accent-blue);
-      border-radius: 20px;
-      padding: 6px 10px;
-      box-shadow: 0 4px 15px rgba(59, 157, 235, 0.25);
-      backdrop-filter: blur(4px);
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .music-player-container audio {
-      height: 30px;
-      max-width: 180px;
-    }
-
     body::before, body::after {
       position: fixed;
       font-size: 24px;
@@ -162,13 +152,13 @@
       z-index: 1;
     }
     body::before {
-      content: "🌸 🩵  🌸";
+      content: "🌸 🩵 ✨ 🌸";
       top: 20px;
-      left: 70px;
+      left: 120px;
       letter-spacing: 15px;
     }
     body::after {
-      content: "🩵  🌸 🩵";
+      content: "🩵 ✨ 🌸 🩵";
       top: 20px;
       right: 300px;
       letter-spacing: 15px;
@@ -319,8 +309,17 @@
 </head>
 <body>
 
-  <!-- Botão de Modo Escuro (Canto Superior Esquerdo) -->
-  <button class="theme-toggle-btn notranslate" id="themeBtn" onclick="toggleTheme()" title="Alternar Modo Escuro">🌙</button>
+  <!-- Elemento de Áudio Oculto -->
+  <audio id="bgAudio" loop autoplay src="musica.mp3"></audio>
+
+  <!-- Controles do Canto Superior Esquerdo -->
+  <div class="left-controls-container notranslate">
+    <!-- Botão de Modo Escuro -->
+    <button class="theme-toggle-btn" id="themeBtn" onclick="toggleTheme()" title="Alternar Modo Escuro">🌙</button>
+
+    <!-- Botão de Música (Mute/Unmute) -->
+    <button class="music-toggle-btn" id="musicBtn" onclick="toggleMusic()" title="Alternar Música">🎵</button>
+  </div>
 
   <!-- Menu Flutuante de Idiomas (Canto Superior Direito) -->
   <div class="lang-switch-container notranslate">
@@ -331,15 +330,6 @@
     <button class="lang-btn" onclick="changeLanguage('ja')" title="日本語">JP</button>
     <button class="lang-btn" onclick="changeLanguage('zh-CN')" title="中文">CN</button>
     <button class="lang-btn" onclick="changeLanguage('ko')" title="한국어">KR</button>
-  </div>
-
-  <!-- Player de Música Flutuante no Canto Inferior Direito -->
-  <div class="music-player-container notranslate">
-    <span style="font-size: 14px;">🎵</span>
-    <audio controls loop>
-      <source src="musica.mp3" type="audio/mpeg">
-      Seu navegador não suporta áudio HTML5.
-    </audio>
   </div>
 
   <div style="padding: 48px 0; width: 100%; position: relative; z-index: 2;">
@@ -412,7 +402,7 @@
         
         <p><strong>→ Responsabilidades do Cliente:</strong><br>É fundamental fornecer informações precisas e completas sobre o pedido, verificando todos os dados antes de finalizar (conta Roblox, valores, método de pagamento). Recomendamos a leitura completa dos termos de compra. Erros decorrentes de informações incorretas fornecidas pelo cliente não são nossa responsabilidade.</p>
         
-        <p><strong>→ Responsabilidade da Equipe Detour:</strong><br>Oferecemos tratamento respeitoso, cordial e profissional em todas as interações, com atenção individualizada focada na resolução eficiente de suas necessidades. Cumprimos rigorosamente os prazos establishedos e garantimos proteção integral dos seus dados pessoais e informações de conta. Não comercializamos, compartilhamos ou divulgamos dados a terceiros.</p>
+        <p><strong>→ Responsabilidade da Equipe Detour:</strong><br>Oferecemos tratamento respeitoso, cordial e profissional em todas as interações, com atenção individualizada focada na resolução eficiente de suas necessidades. Cumprimos rigorosamente os prazos estabelecidos e garantimos proteção integral dos seus dados pessoais e informações de conta. Não comercializamos, compartilhamos ou divulgamos dados a terceiros.</p>
         
         <p style="font-size: 13px; text-align: center; font-weight: 700; color: var(--accent-pink); margin-top: 18px;">
           Agradecemos pela confiança e preferência! 𖹭.ᐟ
@@ -473,6 +463,37 @@
   <div id="google_translate_element" style="display:none;"></div>
 
   <script type="text/javascript">
+    const audio = document.getElementById('bgAudio');
+    const musicBtn = document.getElementById('musicBtn');
+
+    // Toca a música automaticamente assim que entra no site
+    window.addEventListener('DOMContentLoaded', () => {
+      audio.play().then(() => {
+        musicBtn.textContent = '🎵';
+      }).catch(() => {
+        // Se o navegador bloquear o som automático antes de clicar na tela
+        musicBtn.textContent = '🔇';
+        document.addEventListener('click', () => {
+          if (audio.paused) {
+            audio.play();
+            musicBtn.textContent = '🎵';
+          }
+        }, { once: true });
+      });
+    });
+
+    // Função que muta ou desmuta quando clica no botão de música
+    function toggleMusic() {
+      if (audio.paused || audio.muted) {
+        audio.muted = false;
+        audio.play();
+        musicBtn.textContent = '🎵';
+      } else {
+        audio.pause();
+        musicBtn.textContent = '🔇';
+      }
+    }
+
     /* Função de Alternar Modo Escuro */
     function toggleTheme() {
       const body = document.body;
