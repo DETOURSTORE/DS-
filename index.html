@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DETOUR STORE — Links &amp; Murder Mystery 2</title>
+  
+  <!-- Ícone da aba do navegador (Favicon) -->
+  <link rel="icon" type="image/png" href="logo.png">
+  
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;family=Fraunces:opsz,wght@9..144,400;500;600&amp;display=swap" rel="stylesheet">
+  <style>
+    :root {
+      /* Tema Claro (Azul Bebê) */
+      --ink: #1e3a5f;
+      --muted: #4a6b82;
+      --accent: #2b88d8;
+      --line: #b3d7ff;
+      --bg-card: #ffffff;
+      --bg-main: #f0f7ff;
+      --bg-dot-1: #cce3fe;
+      --bg-dot-2: #a4d0ff;
+      --badge-bg: #e1f0ff;
+      --footer-bg: #d0e6ff;
+      --modal-overlay: rgba(30, 58, 95, 0.6);
+      --controls-bg: #ffffff;
+      --lang-btn-color: #1e3a5f;
+    }
+
+    /* Tema Escuro (Inverso em Tons de Azul Noturno) */
+    body.dark-mode {
+      --ink: #d0e6ff;
+      --muted: #8cb4d8;
+      --accent: #5ab0ff;
+      --line: #1d385c;
+      --bg-card: #122238;
+      --bg-main: #0a1424;
+      --bg-dot-1: #182e4a;
+      --bg-dot-2: #203c61;
+      --badge-bg: #1a3352;
+      --footer-bg: #0f1d30;
+      --modal-overlay: rgba(5, 12, 24, 0.8);
+      --controls-bg: #ffffff;
+      --lang-btn-color: #2b88d8;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { 
+      margin: 0; 
+      width: 100%; 
+      min-height: 100vh;
+      color: var(--ink); 
+      font-family: 'DM Sans', sans-serif; 
+      background-color: var(--bg-main);
+      background-image: 
+        radial-gradient(var(--bg-dot-1) 1.5px, transparent 1.5px), 
+        radial-gradient(var(--bg-dot-2) 1.5px, var(--bg-main) 1.5px);
+      background-size: 60px 60px;
+      background-position: 0 0, 30px 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      text-align: center;
+      position: relative;
+      overflow-x: hidden;
+      top: 0 !important;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    /* Esconde a barra superior do Google Tradutor */
+    .goog-te-banner-frame { display: none !important; }
+    .skiptranslate { display: none !important; }
+    body { top: 0px !important; }
+
+    /* Botão de Modo Escuro no Canto Superior Esquerdo */
+    .theme-toggle-btn {
+      position: fixed;
+      top: 16px;
+      left: 16px;
+      background: var(--controls-bg);
+      border: 2px solid var(--accent);
+      border-radius: 9999px;
+      padding: 6px 12px;
+      font-size: 16px;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(43, 136, 216, 0.2);
+      z-index: 100;
+      backdrop-filter: blur(4px);
+      transition: transform 0.2s ease, background 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .theme-toggle-btn:hover {
+      transform: scale(1.1);
+    }
+
+    /* Botões de Idioma Fixos no Canto Superior Direito */
+    .lang-switch-container {
+      position: fixed;
+      top: 16px;
+      right: 16px;
+      display: flex;
+      gap: 6px;
+      background: var(--controls-bg);
+      padding: 6px 12px;
+      border-radius: 9999px;
+      border: 2px solid var(--accent);
+      box-shadow: 0 4px 12px rgba(43, 136, 216, 0.2);
+      z-index: 100;
+      backdrop-filter: blur(4px);
+      transition: background 0.3s ease;
+    }
+    .lang-btn {
+      background: none;
+      border: none;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--lang-btn-color);
+      cursor: pointer;
+      padding: 2px 4px;
+      border-radius: 4px;
+      transition: transform 0.2s ease, color 0.2s ease;
+      line-height: 1;
+    }
+    .lang-btn:hover {
+      transform: scale(1.2);
+      color: var(--accent);
+    }
+
+    body::before, body::after {
+      position: fixed;
+      font-size: 24px;
+      opacity: 0.4;
+      pointer-events: none;
+      z-index: 1;
+    }
+    body::before {
+      content: "❄️ 🩵 ✨ ❄️";
+      top: 20px;
+      left: 70px;
+      letter-spacing: 15px;
+    }
+    body::after {
+      content: "❄️ ✨ 🩵 ❄️";
+      top: 20px;
+      right: 300px;
+      letter-spacing: 15px;
+    }
+
+    .display { font-family: 'Fraunces', serif; }
+    .eyebrow { letter-spacing: .22em; text-transform: uppercase; font-size: 11px; font-weight: 700; color: var(--accent); }
+    
+    .portrait-wrap { 
+      position: relative; 
+      width: 180px; 
+      height: 180px; 
+      margin: 0 auto; 
+      z-index: 2;
+    }
+    .portrait-wrap img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      box-shadow: 0 6px 25px rgba(43, 136, 216, 0.25);
+      border: 4px solid var(--bg-card);
+      outline: 2px solid var(--accent);
+      display: block;
+      transition: border-color 0.3s ease;
+    }
+
+    .link-tree-container {
+      max-width: 480px;
+      margin: 0 auto;
+      padding: 0 16px;
+      width: 100%;
+      position: relative;
+      z-index: 2;
+    }
+    .link-card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      padding: 16px 24px;
+      margin-bottom: 14px;
+      background-color: var(--bg-card);
+      border: 2px solid var(--line);
+      border-radius: 9999px;
+      color: var(--ink);
+      font-weight: 600;
+      font-size: 15px;
+      text-decoration: none;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+      transition: all 0.25s ease;
+    }
+    .link-card:hover {
+      background-color: var(--accent);
+      color: #ffffff;
+      border-color: var(--accent);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(43, 136, 216, 0.25);
+    }
+    .link-card .badge {
+      font-size: 11px;
+      background: var(--badge-bg);
+      color: var(--accent);
+      padding: 2px 10px;
+      border-radius: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      transition: background 0.3s ease;
+    }
+    .link-card:hover .badge {
+      background: #ffffff;
+      color: var(--accent);
+    }
+
+    /* Modais / Pop-ups */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: var(--modal-overlay);
+      backdrop-filter: blur(4px);
+      z-index: 50;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+    .modal:target {
+      display: flex;
+    }
+    .modal-content {
+      background: var(--bg-card);
+      border: 2px solid var(--line);
+      border-radius: 24px;
+      width: 100%;
+      max-width: 520px;
+      max-height: 85vh;
+      overflow-y: auto;
+      padding: 24px;
+      position: relative;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      text-align: left;
+      color: var(--ink);
+    }
+    .modal-close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: var(--badge-bg);
+      color: var(--accent);
+      border: none;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      font-weight: bold;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .modal-close:hover {
+      background: var(--accent);
+      color: #ffffff;
+    }
+
+    /* Caixa de PIX estilizada */
+    .pix-box {
+      background: var(--badge-bg);
+      border: 2px dashed var(--accent);
+      border-radius: 16px;
+      padding: 12px;
+      text-align: center;
+      margin: 16px 0;
+      word-break: break-all;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    .copy-btn {
+      background: var(--accent);
+      color: #ffffff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 9999px;
+      font-weight: 700;
+      cursor: pointer;
+      width: 100%;
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+    .copy-btn:hover {
+      transform: scale(1.02);
+      opacity: 0.9;
+    }
+    
+    .space-y p { margin-bottom: 12px; font-size: 14px; line-height: 1.5; }
+    footer { padding: 24px; border-top: 1px solid var(--line); background: var(--footer-bg); z-index: 2; position: relative; transition: background 0.3s ease; }
+  </style>
+</head>
+<body>
+
+  <!-- Botão de Modo Escuro (Canto Superior Esquerdo) -->
+  <button class="theme-toggle-btn notranslate" id="themeBtn" onclick="toggleTheme()" title="Alternar Modo Escuro">🌙</button>
+
+  <!-- Menu Flutuante de Idiomas (Canto Superior Direito) -->
+  <div class="lang-switch-container notranslate">
+    <button class="lang-btn" onclick="changeLanguage('pt')" title="Português">BR</button>
+    <button class="lang-btn" onclick="changeLanguage('en')" title="English">US</button>
+    <button class="lang-btn" onclick="changeLanguage('es')" title="Español">ES</button>
+    <button class="lang-btn" onclick="changeLanguage('fr')" title="Français">FR</button>
+    <button class="lang-btn" onclick="changeLanguage('ja')" title="日本語">JP</button>
+    <button class="lang-btn" onclick="changeLanguage('zh-CN')" title="中文">CN</button>
+    <button class="lang-btn" onclick="changeLanguage('ko')" title="한국어">KR</button>
+  </div>
+
+  <div style="padding: 48px 0; width: 100%; position: relative; z-index: 2;">
+    <header style="padding: 0 24px; margin-bottom: 32px;">
+      
+      <!-- Foto da loja redonda -->
+      <div class="portrait-wrap" style="margin-bottom: 24px;">
+        <img src="logo.png" alt="Logo DETOUR STORE">
+      </div>
+
+      <p class="eyebrow" style="margin-bottom: 12px;">
+        ✦ Murder Mystery 2 · Roblox ✦
+      </p>
+
+      <p style="font-size: 14px; max-width: 340px; margin: 0 auto; color: var(--muted);">
+        As melhores armas e facas do Murder Mystery 2 pelos menores preços. Rápido, seguro e garantido! 𖹭.ᐟ
+      </p>
+    </header>
+
+    <main class="link-tree-container">
+      
+      <!-- Link Discord -->
+      <a href="https://discord.gg/aGSDnmpuw" target="_blank" rel="noopener noreferrer" class="link-card">
+        <span>✉ Servidor no Discord</span>
+        <span class="badge">Oficial</span>
+      </a>
+
+      <!-- Link TikTok -->
+      <a href="https://www.tiktok.com/@detour_store" target="_blank" rel="noopener noreferrer" class="link-card">
+        <span>♫ TikTok da Loja</span>
+        <span class="badge">Oficial</span>
+      </a>
+
+      <!-- Botão Diretrizes do Server -->
+      <a href="#diretrizes-modal" class="link-card">
+        <span>🗐 Diretrizes do Servidor</span>
+        <span class="badge">Ler</span>
+      </a>
+
+      <!-- Botão Regras SHOP -->
+      <a href="#shop-modal" class="link-card">
+        <span>🗁 Regras SHOP</span>
+        <span class="badge">Ler</span>
+      </a>
+
+      <!-- Botão Doações -->
+      <a href="#pix-modal" class="link-card">
+        <span>🩵 Apoiar </span>
+        <span class="badge">PIX</span>
+      </a>
+
+    </main>
+  </div>
+
+  <!-- Pop-up 1: Diretrizes do Servidor -->
+  <div id="diretrizes-modal" class="modal">
+    <div class="modal-content">
+      <a href="#" class="modal-close">✕</a>
+      
+      <h2 class="display" style="font-size: 20px; font-weight: bold; margin-bottom: 16px; text-align: center; color: var(--accent);">╭🩵 ┈┈ ꒰ REGRAS DO SERVER ꒱ ┈┈ 🩵╮</h2>
+      
+      <p style="font-size: 12px; margin-bottom: 16px; text-align: center; color: var(--muted);">
+        As regras existem para manter o servidor organizado, seguro e agradável para todos. O descumprimento resultará em punições. Pedimos que leia com atenção.
+      </p>
+
+      <div class="space-y">
+        <p><strong>→ Spam/Flood:</strong> Evite enviar mensagens em excesso ou repetir conteúdos no chat. Isso prejudica a organização da conversa e a experiência dos demais membros.</p>
+        <p><strong>→ Pings:</strong> Evite mencionar a equipe (Staff) sem necessidade. Utilize apenas em casos de descumprimento das regras.</p>
+        <p><strong>→ Conteúdo +18:</strong> Não é permitido conteúdo +18 ou impróprio. Prezamos por um ambiente seguro, leve e adequado para todos.</p>
+        <p><strong>→ Preconceito:</strong> Não é tolerado nenhum tipo de preconceito, incluindo gordofobia, racismo, transfobia, misoginia, entre outros.</p>
+        <p><strong>→ Privacidade e segurança:</strong> Não compartilhe informações pessoais, suas ou de terceiros.</p>
+        <p><strong>→ Convivência:</strong> Evite discussões e linguagem ofensiva. Vamos manter um ambiente tranquilo e respeitoso para todos.</p>
+        <p><strong>→ Organização:</strong> Utilize os canais corretos para cada assunto e ajude a manter o servidor organizado.</p>
+        <p><strong>→ Links:</strong> Evite enviar links para a segurança de todos. Não são permitidos links de outros servidores. Também não compartilhe conteúdos inadequados, como links suspeitos, imagens impróprias ou assuntos sensíveis.</p>
+        <p><strong>→ Punição:</strong> O descumprimento das regras resultará em punições. Em caso de contestação de punições aplicadas pela equipe, a decisão será mantida. Siga as regras, respeite as orientações e assuma a responsabilidade por eventuais infrações.</p>
+        <p><strong>→ Vendas:</strong> Vendas são proibidas dentro do servidor. Caso alguém realize vendas, será applied 1 aviso (warn). Caso se repita, o usuário será banido.</p>
+        <p><strong>→ Plágio:</strong> É proibido qualquer tipo de cópia/plágio dos conteúdos da DETOUR STORE.</p>
+        <p><strong>→ Divulgação:</strong> Divulgação de outras lojas, servidores ou contas (como TikTok) não é permitida dentro do servidor. Caso ocorra, será aplicado 1 warn (aviso) e caso obtenha 3 warns resultará em mute.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pop-up 2: Regras SHOP -->
+  <div id="shop-modal" class="modal">
+    <div class="modal-content">
+      <a href="#" class="modal-close">✕</a>
+      
+      <h2 class="display" style="font-size: 20px; font-weight: bold; margin-bottom: 16px; text-align: center; color: var(--accent);">🩵・Regras SHOP</h2>
+      
+      <div class="space-y">
+        <p><strong>. Respeito:</strong> Trate os atendentes com respeito. Ofensas, provocações ou atitudes desrespeitosas não serão toleradas.</p>
+        <p><strong>. Compras:</strong> Antes de realizar o pagamento, confira o valor e o nome que está no PIX. Após o pagamento, aguarde o prazo de entrega informado pela equipe.</p>
+        <p><strong>. Tickets:</strong> Abra um ticket somente quando realmente tiver certeza que irá comprar. Evite abrir vários tickets para o mesmo assunto ou deixar tickets sem resposta.</p>
+        <p><strong>. Pagamentos:</strong> Envie o comprovante após realizar o pagamento corretamente. Comprovantes falsos ou qualquer tentativa de fraude resultarão em banimento.</p>
+        <p><strong>. Reembolsos:</strong> Reembolsos serão analisados individualmente pela equipe. Erros causados pelo cliente, como informações incorretas, não serão responsabilidade da loja.<br><span style="font-size: 12px; font-weight: 600; color: var(--accent);">OBS: Após entrega do pedido não fazemos reembolso.</span></p>
+        <p><strong>. Estoque e valores:</strong> Os preços e a disponibilidade dos itens podem sofrer alterações sem aviso prévio. Sempre confira o estoque atualizado antes de comprar. ⁠꒰・estoque・mm2・؛ଓ</p>
+        <p><strong>. Flood ou Spam:</strong> Não envie mensagens em excesso ou marque a equipe repetidamente no ticket. O bot já tem a função de marcar os atendentes, aguarde o atendimento. Canal sem resposta após 30 minutos, será permitido marcar.</p>
+        <p><strong>. Avaliações:</strong> Após receber seu pedido, pedimos que deixe uma avaliação sobre o atendimento e sua experiência com a loja. Clientes que não realizarão a avaliação receberão o cargo @avaliação pendente e ficarão impossibilitados de realizar novas compras na loja até que a avaliação seja feita.</p>
+        
+        <p style="font-size: 12px; text-align: center; font-weight: 600; color: var(--accent); margin-top: 16px;">
+          Ao realizar uma compra na DETOUR STORE, você declara estar de acordo com nossas regras.<br>Agradecemos pela compreensão e boas compras! ᧔ෆ᧓
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pop-up 3: Doações / PIX -->
+  <div id="pix-modal" class="modal">
+    <div class="modal-content" style="text-align: center;">
+      <a href="#" class="modal-close">✕</a>
+      
+      <h2 class="display" style="font-size: 20px; font-weight: bold; margin-bottom: 12px; color: var(--accent);">🩵 Apoie a DETOUR STORE 🩵</h2>
+      
+      <p style="font-size: 13px; color: var(--muted); margin-bottom: 16px;">
+        Gosta da nossa loja? Se quiser nos apoiar com qualquer valor via PIX, agradecemos imensamente! ❄️
+      </p>
+
+      <!-- Imagem do QR Code -->
+      <div style="margin: 0 auto 16px; max-width: 200px; background: #ffffff; padding: 12px; border-radius: 16px; border: 2px solid var(--line);">
+        <img src="QR CODE.webp" alt="QR Code PIX DETOUR STORE" style="width: 100%; height: auto; display: block; border-radius: 8px;">
+      </div>
+
+      <!-- Chave PIX -->
+      <div class="pix-box notranslate" id="pixKey">
+        lmshop2006@gmail.com
+      </div>
+
+      <!-- Botão Copiar -->
+      <button class="copy-btn" onclick="copyPixKey()">📋 Copiar Chave PIX</button>
+    </div>
+  </div>
+
+  <footer>
+    <p style="font-size: 12px; font-weight: 500; color: var(--muted); margin: 0;">❄️ DETOUR STORE ❄️</p>
+  </footer>
+
+  <!-- Elemento invisível do Google Tradutor -->
+  <div id="google_translate_element" style="display:none;"></div>
+
+  <script type="text/javascript">
+    /* Função de Copiar Chave PIX */
+    function copyPixKey() {
+      const pixKey = "lmshop2006@gmail.com";
+      navigator.clipboard.writeText(pixKey).then(() => {
+        alert("Chave PIX copiada com sucesso 𖹭.ᐟ");
+      }).catch(err => {
+        console.error("Erro ao copiar: ", err);
+      });
+    }
+
+    /* Função de Alternar Modo Escuro */
+    function toggleTheme() {
+      const body = document.body;
+      const themeBtn = document.getElementById('themeBtn');
+      body.classList.toggle('dark-mode');
+      
+      if (body.classList.contains('dark-mode')) {
+        themeBtn.textContent = '🌙';
+      } else {
+        themeBtn.textContent = '☀️';
+      }
+    }
+
+    /* Funções do Tradutor */
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'pt',
+        autoDisplay: false
+      }, 'google_translate_element');
+    }
+
+    function changeLanguage(langCode) {
+      var select = document.querySelector('.goog-te-combo');
+      if (select) {
+        select.value = langCode;
+        select.dispatchEvent(new Event('change'));
+      }
+    }
+  </script>
+  <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+</body>
+</html>
