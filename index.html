@@ -306,18 +306,16 @@
     .space-y p { margin-bottom: 12px; font-size: 14px; line-height: 1.5; }
     footer { padding: 24px; border-top: 1px solid var(--line); background: var(--footer-bg); z-index: 2; position: relative; transition: background 0.3s ease; }
 
-    /* ===================================================
-       AJUSTES RESPONSIVOS (PARA CELULARES E DISPOSITIVOS MÓVEIS)
-       =================================================== */
+    /* Ajustes para Celulares */
     @media (max-width: 600px) {
       body::before, body::after {
-        display: none; /* Esconde emojis do fundo para não sobrepor botões no celular */
+        display: none;
       }
       .portrait-wrap {
         width: 90%;
         max-width: 320px;
         height: auto;
-        aspect-ratio: 16 / 9; /* Mantém a proporção perfeita retangular */
+        aspect-ratio: 16 / 9;
       }
       .portrait-wrap img {
         height: 100%;
@@ -335,7 +333,7 @@
         font-size: 14px;
       }
       .main-wrapper {
-        padding-top: 64px !important; /* Espaço para não cobrir a logo com a barra superior */
+        padding-top: 64px !important;
       }
     }
   </style>
@@ -351,7 +349,7 @@
     <button class="theme-toggle-btn" id="themeBtn" onclick="toggleTheme()" title="Alternar Modo Escuro">🌙</button>
 
     <!-- Botão de Música -->
-    <button class="music-toggle-btn" id="musicBtn" onclick="toggleMusic()" title="Alternar Música">🎵</button>
+    <button class="music-toggle-btn" id="musicBtn" onclick="toggleMusic()" title="Alternar Música">🔇</button>
   </div>
 
   <!-- Menu Flutuante de Idiomas (Canto Superior Direito) -->
@@ -498,32 +496,39 @@
   <script type="text/javascript">
     const audio = document.getElementById('bgAudio');
     const musicBtn = document.getElementById('musicBtn');
+    let hasPlayed = false;
 
-    // Tenta tocar com som direto
-    function startAudio() {
-      audio.play().then(() => {
-        musicBtn.textContent = '🎵';
-      }).catch(() => {
-        // Se o navegador barrar o som direto, liga ao primeiro toque/clique em qualquer lugar do site
-        musicBtn.textContent = '🔇';
-        const playOnClick = () => {
-          audio.play();
+    // Toca o áudio e atualiza o ícone do botão para 🎵
+    function playAudio() {
+      if (!hasPlayed) {
+        audio.play().then(() => {
           musicBtn.textContent = '🎵';
-          document.removeEventListener('click', playOnClick);
-          document.removeEventListener('touchstart', playOnClick);
-        };
-        document.addEventListener('click', playOnClick);
-        document.addEventListener('touchstart', playOnClick);
-      });
+          hasPlayed = true;
+        }).catch(err => {
+          console.log("Aguardando interação...", err);
+        });
+      }
     }
 
-    window.addEventListener('DOMContentLoaded', startAudio);
+    // Adiciona evento para iniciar a música ao clicar em QUALQUER lugar/botão do site
+    window.addEventListener('DOMContentLoaded', () => {
+      // Tenta tocar de imediato (caso o navegador permita)
+      audio.play().then(() => {
+        musicBtn.textContent = '🎵';
+        hasPlayed = true;
+      }).catch(() => {
+        // Se o navegador bloquear o autoplay, inicia ao apertar qualquer botão ou clicar na tela
+        document.addEventListener('click', playAudio, { once: true });
+        document.addEventListener('touchstart', playAudio, { once: true });
+      });
+    });
 
-    // Alterna Mute / Unmute e Play / Pause no clique do botão 🎵
+    // Função de clique manual no próprio botão de música
     function toggleMusic() {
       if (audio.paused) {
         audio.play();
         musicBtn.textContent = '🎵';
+        hasPlayed = true;
       } else {
         audio.pause();
         musicBtn.textContent = '🔇';
