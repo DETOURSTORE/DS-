@@ -304,7 +304,29 @@
     }
     
     .space-y p { margin-bottom: 12px; font-size: 14px; line-height: 1.5; }
-    footer { padding: 24px; border-top: 1px solid var(--line); background: var(--footer-bg); z-index: 2; position: relative; transition: background 0.3s ease; }
+    
+    footer { 
+      padding: 24px; 
+      border-top: 1px solid var(--line); 
+      background: var(--footer-bg); 
+      z-index: 2; 
+      position: relative; 
+      transition: background 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Assinatura no canto inferior esquerdo */
+    .signature {
+      position: absolute;
+      left: 24px;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--muted);
+      opacity: 0.8;
+      letter-spacing: 0.5px;
+    }
 
     /* Ajustes para Celulares */
     @media (max-width: 600px) {
@@ -334,6 +356,14 @@
       }
       .main-wrapper {
         padding-top: 64px !important;
+      }
+      footer {
+        flex-direction: column;
+        gap: 8px;
+      }
+      .signature {
+        position: static;
+        margin-top: 4px;
       }
     }
   </style>
@@ -487,6 +517,7 @@
   </div>
 
   <footer>
+    <span class="signature">Criado por Ay_sousz</span>
     <p style="font-size: 12px; font-weight: 500; color: var(--muted); margin: 0;">🌸 DETOUR STORE 🩵</p>
   </footer>
 
