@@ -3,659 +3,1073 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DETOUR STORE — Links &amp; Roblox Items</title>
+  <title>DETOUR STORE — Holographic Roblox Emporium</title>
   
-  <!-- Ícone da aba do navegador (Favicon) -->
-  <link rel="icon" type="image/webp" href="logo.webp">
+  <!-- Fonts: Orbitron & Rajdhani for Cyber UI, Plus Jakarta Sans for reading -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
   
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;family=Fraunces:opsz,wght@9..144,400;500;600&amp;display=swap" rel="stylesheet">
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
   <style>
     :root {
-      /* Tema Claro (Rosa + Azul Bebê) */
-      --ink: #4a2e43;
-      --muted: #6e5267;
-      --accent-blue: #3b9deb;
-      --accent-pink: #f06292;
-      --accent: #e91e63;
-      --line: #b3d7ff;
-      --bg-card: #ffffff;
-      --bg-main: #f4f8ff;
-      --bg-dot-1: #fbcfe8;
-      --bg-dot-2: #bae6fd;
-      --badge-bg: #e0f2fe;
-      --footer-bg: #e0f2fe;
-      --modal-overlay: rgba(30, 41, 59, 0.6);
-      --controls-bg: #ffffff;
-      --lang-btn-color: #3b9deb;
-    }
-
-    /* Tema Escuro */
-    body.dark-mode {
-      --ink: #f1f5f9;
-      --muted: #cbd5e1;
-      --accent-blue: #60a5fa;
+      /* Theme Light: Pastel Dreampunk */
+      --bg-base: #f0f4fd;
+      --cyber-glow-1: #ffb6c1; /* Baby Pink */
+      --cyber-glow-2: #87cefa; /* Baby Blue */
+      --cyber-glow-3: #d8b4fe; /* Lavender */
+      --ink: #2d2640;
+      --muted: #6b6280;
       --accent-pink: #f472b6;
-      --accent: #f472b6;
-      --line: #334155;
-      --bg-card: #1e293b;
-      --bg-main: #0f172a;
-      --bg-dot-1: #831843;
-      --bg-dot-2: #1e3a8a;
-      --badge-bg: #1e3a8a;
-      --footer-bg: #0f172a;
-      --modal-overlay: rgba(15, 23, 42, 0.8);
-      --controls-bg: #1e293b;
-      --lang-btn-color: #60a5fa;
+      --accent-cyan: #38bdf8;
+      --accent-purple: #c084fc;
+      --card-bg: rgba(255, 255, 255, 0.65);
+      --card-border: rgba(255, 255, 255, 0.9);
+      --card-shadow: 0 15px 35px -10px rgba(244, 114, 182, 0.2), 0 0 20px rgba(56, 189, 248, 0.15);
+      --badge-bg: rgba(255, 255, 255, 0.85);
+      --badge-border: rgba(244, 114, 182, 0.3);
+      --badge-color: #db2777;
+      --modal-bg: rgba(255, 255, 255, 0.88);
+      --modal-overlay: rgba(45, 38, 64, 0.4);
+      --ctrl-bg: rgba(255, 255, 255, 0.75);
+      --ctrl-border: rgba(255, 255, 255, 0.9);
+      --hud-line: rgba(56, 189, 248, 0.3);
+      --scanline-opacity: 0.03;
     }
 
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body { 
-      margin: 0; 
-      width: 100%; 
+    body.dark-mode {
+      /* Theme Dark: Deep Space Cyberpunk */
+      --bg-base: #06070c;
+      --cyber-glow-1: #ff007f; /* Hot Pink */
+      --cyber-glow-2: #00f3ff; /* Neon Cyan */
+      --cyber-glow-3: #9d4edd; /* Electric Purple */
+      --ink: #f1f5f9;
+      --muted: #94a3b8;
+      --accent-pink: #ff007f;
+      --accent-cyan: #00f3ff;
+      --accent-purple: #9d4edd;
+      --card-bg: rgba(13, 16, 27, 0.65);
+      --card-border: rgba(0, 243, 255, 0.25);
+      --card-shadow: 0 20px 45px -10px rgba(0, 0, 0, 0.8), 0 0 25px rgba(0, 243, 255, 0.25);
+      --badge-bg: rgba(0, 243, 255, 0.1);
+      --badge-border: rgba(0, 243, 255, 0.4);
+      --badge-color: #00f3ff;
+      --modal-bg: rgba(10, 12, 22, 0.92);
+      --modal-overlay: rgba(3, 4, 8, 0.82);
+      --ctrl-bg: rgba(13, 16, 27, 0.8);
+      --ctrl-border: rgba(0, 243, 255, 0.3);
+      --hud-line: rgba(255, 0, 127, 0.3);
+      --scanline-opacity: 0.08;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      width: 100%;
       min-height: 100vh;
-      color: var(--ink); 
-      font-family: 'DM Sans', sans-serif; 
-      background-color: var(--bg-main);
-      background-image: 
-        radial-gradient(var(--bg-dot-1) 1.5px, transparent 1.5px), 
-        radial-gradient(var(--bg-dot-2) 1.5px, var(--bg-main) 1.5px);
-      background-size: 60px 60px;
-      background-position: 0 0, 30px 30px;
+      color: var(--ink);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: var(--bg-base);
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      text-align: center;
       position: relative;
       overflow-x: hidden;
-      top: 0 !important;
-      transition: background-color 0.3s ease, color 0.3s ease;
+      transition: background-color 0.5s ease, color 0.5s ease;
     }
 
-    /* Esconde a barra superior do Google Tradutor */
-    .goog-te-banner-frame { display: none !important; }
-    .skiptranslate { display: none !important; }
-    body { top: 0px !important; }
-
-    /* Container de Controles do Canto Superior Esquerdo */
-    .left-controls-container {
+    /* Hologram Overlay FX */
+    .scanlines {
       position: fixed;
-      top: 16px;
-      left: 16px;
+      top: 0; left: 0; width: 100vw; height: 100vh;
+      background: linear-gradient(to bottom, transparent 50%, rgba(0, 0, 0, 0.4) 51%);
+      background-size: 100% 4px;
+      opacity: var(--scanline-opacity);
+      pointer-events: none;
+      z-index: 99;
+    }
+
+    /* Ambient Holographic Glow Canvas */
+    #cyber-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Top Left Floating Control Pills */
+    .controls-pill-group {
+      position: fixed;
+      top: 20px;
+      left: 20px;
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 10px;
       z-index: 100;
     }
 
-    /* Botão de Modo Escuro e Botão de Música */
-    .theme-toggle-btn, .music-toggle-btn {
-      background: var(--controls-bg);
-      border: 2px solid var(--accent-blue);
+    .cyber-btn {
+      background: var(--ctrl-bg);
+      border: 1px solid var(--ctrl-border);
       border-radius: 9999px;
-      padding: 6px 12px;
-      font-size: 16px;
+      padding: 8px 16px;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      color: var(--ink);
       cursor: pointer;
-      box-shadow: 0 4px 12px rgba(59, 157, 235, 0.2);
-      backdrop-filter: blur(4px);
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
       transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       display: flex;
       align-items: center;
-      justify-content: center;
-    }
-    .music-toggle-btn {
-      border-color: var(--accent-pink);
-      box-shadow: 0 4px 12px rgba(240, 98, 146, 0.2);
-    }
-    .theme-toggle-btn:hover, .music-toggle-btn:hover {
-      transform: scale(1.15) rotate(5deg);
-    }
-    .theme-toggle-btn:active, .music-toggle-btn:active {
-      transform: scale(0.92);
+      gap: 8px;
     }
 
-    /* Botões de Idioma Fixos no Canto Superior Direito */
-    .lang-switch-container {
-      position: fixed;
-      top: 16px;
-      right: 16px;
-      display: flex;
-      gap: 6px;
-      background: var(--controls-bg);
-      padding: 6px 12px;
-      border-radius: 9999px;
-      border: 2px solid var(--accent-pink);
-      box-shadow: 0 4px 12px rgba(240, 98, 146, 0.2);
-      z-index: 100;
-      backdrop-filter: blur(4px);
-      transition: background 0.3s ease;
-    }
-    .lang-btn {
-      background: none;
-      border: none;
-      font-size: 12px;
-      font-weight: 700;
-      color: var(--lang-btn-color);
-      cursor: pointer;
-      padding: 2px 4px;
-      border-radius: 4px;
-      transition: all 0.2s ease;
-      line-height: 1;
-    }
-    .lang-btn:hover {
-      transform: scale(1.25);
-      color: var(--accent-pink);
+    .cyber-btn:hover {
+      transform: translateY(-2px) scale(1.03);
+      border-color: var(--accent-cyan);
+      box-shadow: 0 0 20px var(--cyber-glow-2);
     }
 
-    body::before, body::after {
-      position: fixed;
-      font-size: 24px;
-      opacity: 0.4;
-      pointer-events: none;
-      z-index: 1;
-      animation: floatSparkles 4s ease-in-out infinite alternate;
-    }
-    body::before {
-      content: "🌸 🩵 ✨ 🌸";
-      top: 20px;
-      left: 120px;
-      letter-spacing: 15px;
-    }
-    body::after {
-      content: "🩵 ✨ 🌸 🩵";
-      top: 20px;
-      right: 300px;
-      letter-spacing: 15px;
+    .cyber-btn:active {
+      transform: scale(0.95);
     }
 
-    @keyframes floatSparkles {
-      0% { transform: translateY(0px); }
-      100% { transform: translateY(-8px); }
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--accent-cyan);
+      box-shadow: 0 0 10px var(--accent-cyan);
+      animation: pulseDot 2s infinite;
     }
 
-    .display { font-family: 'Fraunces', serif; }
-    .eyebrow { letter-spacing: .22em; text-transform: uppercase; font-size: 11px; font-weight: 700; color: var(--accent-pink); }
-    
-    /* Container da Imagem Maior e Retangular com Animação Glow */
-    .portrait-wrap { 
-      position: relative; 
+    @keyframes pulseDot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(1.3); }
+    }
+
+    /* Main Container */
+    .viewport-container {
       width: 100%;
-      max-width: 360px; 
-      height: 200px; 
-      margin: 0 auto; 
-      z-index: 2;
-      animation: logoPulse 3s infinite alternate;
-    }
-    .portrait-wrap img {
-      width: 100%;
-      height: 100%;
-      border-radius: 16px;
-      object-fit: cover;
-      box-shadow: 0 8px 25px rgba(240, 98, 146, 0.25);
-      border: 4px solid var(--bg-card);
-      outline: 3px solid var(--accent-blue);
-      display: block;
-      transition: all 0.4s ease;
-    }
-    .portrait-wrap:hover img {
-      transform: scale(1.02);
-      outline-color: var(--accent-pink);
-      box-shadow: 0 12px 30px rgba(240, 98, 146, 0.4);
-    }
-
-    @keyframes logoPulse {
-      0% { transform: translateY(0px); }
-      100% { transform: translateY(-5px); }
-    }
-
-    .link-tree-container {
-      max-width: 480px;
+      max-width: 580px;
       margin: 0 auto;
-      padding: 0 16px;
-      width: 100%;
+      padding: 80px 20px 40px;
       position: relative;
       z-index: 2;
+      text-align: center;
     }
 
-    /* Animação dos Cards Interativos */
-    .link-card {
+    /* HUD Frame Header */
+    .hud-header {
+      position: relative;
+      margin-bottom: 30px;
+    }
+
+    /* Holographic 3D Logo Frame (Square) */
+    .holo-logo-frame {
+      position: relative;
+      width: 140px;
+      height: 140px;
+      margin: 0 auto 24px;
+      perspective: 1000px;
+    }
+
+    .holo-logo-inner {
+      width: 100%;
+      height: 100%;
+      border-radius: 28px;
+      padding: 3px;
+      background: linear-gradient(135deg, var(--cyber-glow-1), var(--cyber-glow-2), var(--cyber-glow-3));
+      box-shadow: 0 0 35px var(--cyber-glow-2), inset 0 0 15px var(--cyber-glow-1);
+      animation: logoFloat 4s ease-in-out infinite alternate;
+      transition: transform 0.5s ease;
+    }
+
+    .holo-logo-frame:hover .holo-logo-inner {
+      transform: rotateY(15deg) rotateX(10deg) scale(1.05);
+    }
+
+    @keyframes logoFloat {
+      0% { transform: translateY(0px) rotate(0deg); }
+      100% { transform: translateY(-8px) rotate(2deg); }
+    }
+
+    .holo-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 25px;
+      display: block;
+      background: var(--bg-base);
+    }
+
+    /* Live Online Status Pill */
+    .live-status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 5px 14px;
+      border-radius: 9999px;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent-cyan);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+      margin-bottom: 14px;
+      backdrop-filter: blur(10px);
+    }
+
+    .hud-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 32px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      line-height: 1.1;
+      margin-bottom: 10px;
+      background: linear-gradient(135deg, var(--ink), var(--accent-pink), var(--accent-cyan));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-transform: uppercase;
+      text-shadow: 0 0 30px rgba(0, 243, 255, 0.2);
+    }
+
+    .hud-subtitle {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      color: var(--accent-pink);
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .hud-desc {
+      font-size: 13.5px;
+      line-height: 1.6;
+      color: var(--muted);
+      max-width: 440px;
+      margin: 0 auto;
+    }
+
+    /* Interactive Product Showcase Carousel (Side-by-Side Flex Layout) */
+    .showcase-section {
+      margin-bottom: 30px;
+      text-align: left;
+    }
+
+    .section-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      padding-left: 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .section-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--hud-line);
+    }
+
+    /* FLEXBOX TRACK: Keeps balloons side by side with smooth horizontal scrolling */
+    .carousel-track {
+      display: flex;
+      flex-direction: row;
+      gap: 12px;
+      overflow-x: auto;
+      padding: 6px 4px 16px;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: thin;
+      scrollbar-color: var(--accent-cyan) transparent;
+    }
+
+    .carousel-track::-webkit-scrollbar {
+      height: 5px;
+    }
+
+    .carousel-track::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .carousel-track::-webkit-scrollbar-thumb {
+      background: var(--accent-cyan);
+      border-radius: 9999px;
+    }
+
+    .product-card {
+      flex: 0 0 165px;
+      width: 165px;
+      scroll-snap-align: start;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 14px;
+      box-shadow: var(--card-shadow);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 170px;
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px) scale(1.03);
+      border-color: var(--accent-cyan);
+      box-shadow: 0 15px 30px -5px var(--cyber-glow-2);
+    }
+
+    .product-icon-wrap {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      background: var(--badge-bg);
+      border: 1px solid var(--badge-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      color: var(--accent-cyan);
+      margin-bottom: 10px;
+    }
+
+    .product-name {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1.2;
+      margin-bottom: 4px;
+    }
+
+    .product-tag {
+      font-size: 11px;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .product-price {
+      align-self: flex-start;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 9999px;
+      background: var(--accent-pink);
+      color: #ffffff;
+      box-shadow: 0 4px 12px rgba(244, 114, 182, 0.4);
+    }
+
+    /* Main Action Links Stack */
+    .links-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .cyber-link-card {
+      position: relative;
       display: flex;
       align-items: center;
       justify-content: space-between;
       width: 100%;
-      padding: 16px 24px;
-      margin-bottom: 14px;
-      background-color: var(--bg-card);
-      border: 2px solid var(--line);
-      border-radius: 9999px;
+      padding: 16px 22px;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
       color: var(--ink);
-      font-weight: 600;
-      font-size: 15px;
       text-decoration: none;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-      position: relative;
+      box-shadow: var(--card-shadow);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       overflow: hidden;
     }
-    
-    .link-card::before {
+
+    .cyber-link-card::before {
       content: '';
       position: absolute;
-      top: 0; left: -100%;
-      width: 100%; height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
-      transition: left 0.5s ease;
+      top: 0; left: 0; width: 4px; height: 100%;
+      background: linear-gradient(to bottom, var(--accent-pink), var(--accent-cyan));
+      opacity: 0.7;
+      transition: width 0.3s ease;
     }
 
-    .link-card:hover::before {
-      left: 100%;
+    .cyber-link-card:hover::before {
+      width: 100%;
+      opacity: 0.08;
     }
 
-    .link-card:hover {
-      background: linear-gradient(135deg, var(--accent-blue), var(--accent-pink));
-      color: #ffffff;
-      border-color: transparent;
-      transform: translateY(-4px) scale(1.02);
-      box-shadow: 0 10px 25px rgba(240, 98, 146, 0.35);
+    .cyber-link-card:hover {
+      transform: translateY(-4px) scale(1.015);
+      border-color: var(--accent-cyan);
+      box-shadow: 0 15px 35px -5px var(--cyber-glow-2);
     }
 
-    .link-card:active {
-      transform: translateY(-1px) scale(0.98);
+    .card-left {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      z-index: 2;
     }
 
-    .link-card .badge {
-      font-size: 11px;
-      background: var(--badge-bg);
-      color: var(--accent-blue);
-      padding: 2px 10px;
+    .card-icon-box {
+      width: 38px;
+      height: 38px;
       border-radius: 12px;
-      font-weight: 700;
-      text-transform: uppercase;
-      transition: all 0.3s ease;
-    }
-    .link-card:hover .badge {
-      background: #ffffff;
-      color: var(--accent-pink);
-      transform: scale(1.1);
-    }
-
-    /* Modais / Pop-ups com Animação de Surgimento */
-    .modal {
-      display: none;
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: var(--modal-overlay);
-      backdrop-filter: blur(4px);
-      z-index: 50;
+      background: var(--badge-bg);
+      border: 1px solid var(--badge-border);
+      display: flex;
       align-items: center;
       justify-content: center;
-      padding: 16px;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-    .modal:target {
-      display: flex;
-      opacity: 1;
-    }
-    .modal-content {
-      background: var(--bg-card);
-      border: 2px solid var(--line);
-      border-radius: 24px;
-      width: 100%;
-      max-width: 520px;
-      max-height: 85vh;
-      overflow-y: auto;
-      padding: 24px;
-      position: relative;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-      text-align: left;
-      color: var(--ink);
-      transform: translateY(20px);
-      transition: transform 0.3s ease-out;
-    }
-    .modal:target .modal-content {
-      transform: translateY(0);
+      font-size: 16px;
+      color: var(--accent-pink);
+      transition: transform 0.3s ease;
     }
 
-    .modal-close {
-      position: absolute;
-      top: 16px;
-      right: 16px;
+    .cyber-link-card:hover .card-icon-box {
+      transform: scale(1.15) rotate(5deg);
+      color: var(--accent-cyan);
+      border-color: var(--accent-cyan);
+    }
+
+    .card-text {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    .card-badge {
+      z-index: 2;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: 9999px;
       background: var(--badge-bg);
-      color: var(--accent-pink);
-      border: none;
+      border: 1px solid var(--badge-border);
+      color: var(--badge-color);
+      transition: all 0.3s ease;
+    }
+
+    .cyber-link-card:hover .card-badge {
+      background: var(--accent-cyan);
+      color: #000000;
+      border-color: var(--accent-cyan);
+      box-shadow: 0 0 15px var(--accent-cyan);
+    }
+
+    /* Holographic Custom Glass Modals */
+    .hud-modal-overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      background: var(--modal-overlay);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      z-index: 300;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s ease;
+    }
+
+    .hud-modal-overlay:target {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .hud-modal-card {
+      background: var(--modal-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 28px;
+      width: 100%;
+      max-width: 500px;
+      max-height: 85vh;
+      overflow-y: auto;
+      padding: 32px 26px;
+      position: relative;
+      box-shadow: 0 25px 60px -10px rgba(0, 0, 0, 0.5), 0 0 30px var(--hud-line);
+      backdrop-filter: blur(25px);
+      -webkit-backdrop-filter: blur(25px);
+      transform: translateY(20px) scale(0.95);
+      transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      text-align: left;
+    }
+
+    .hud-modal-overlay:target .hud-modal-card {
+      transform: translateY(0) scale(1);
+    }
+
+    .hud-modal-card::-webkit-scrollbar {
+      width: 4px;
+    }
+    .hud-modal-card::-webkit-scrollbar-thumb {
+      background: var(--accent-cyan);
+      border-radius: 9999px;
+    }
+
+    .modal-close-btn {
+      position: absolute;
+      top: 20px;
+      right: 20px;
       width: 32px;
       height: 32px;
       border-radius: 50%;
-      font-weight: bold;
-      cursor: pointer;
+      background: var(--badge-bg);
+      border: 1px solid var(--card-border);
+      color: var(--muted);
       display: flex;
       align-items: center;
       justify-content: center;
       text-decoration: none;
-      transition: all 0.2s ease;
+      font-size: 12px;
+      transition: all 0.3s ease;
     }
-    .modal-close:hover {
+
+    .modal-close-btn:hover {
       background: var(--accent-pink);
       color: #ffffff;
       transform: rotate(90deg);
     }
 
-    .copy-btn {
-      background: linear-gradient(135deg, var(--accent-blue), var(--accent-pink));
-      color: #ffffff;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 9999px;
+    .modal-head-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--accent-pink);
+      text-align: center;
+      margin-bottom: 20px;
+      letter-spacing: 1px;
+    }
+
+    .modal-info-card {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--hud-line);
+      border-radius: 16px;
+      padding: 14px 16px;
+      margin-bottom: 12px;
+    }
+
+    .modal-info-head {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 14px;
       font-weight: 700;
-      cursor: pointer;
-      width: 100%;
-      transition: all 0.25s ease;
+      color: var(--accent-cyan);
+      margin-bottom: 4px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
     }
-    .copy-btn:hover {
-      transform: scale(1.03);
-      box-shadow: 0 6px 18px rgba(240, 98, 146, 0.3);
-      opacity: 0.95;
+
+    .modal-info-body {
+      font-size: 13px;
+      line-height: 1.6;
+      color: var(--ink);
     }
-    .copy-btn:active {
-      transform: scale(0.97);
-    }
-    
-    .space-y p { margin-bottom: 12px; font-size: 14px; line-height: 1.5; }
-    
-    footer { 
-      padding: 24px; 
-      border-top: 1px solid var(--line); 
-      background: var(--footer-bg); 
-      z-index: 2; 
-      position: relative; 
-      transition: background 0.3s ease;
+
+    .modal-action-btn {
       display: flex;
       align-items: center;
       justify-content: center;
+      gap: 10px;
+      width: 100%;
+      padding: 14px;
+      margin-top: 10px;
+      border-radius: 9999px;
+      background: linear-gradient(135deg, var(--accent-pink), var(--accent-cyan));
+      color: #ffffff;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-decoration: none;
+      box-shadow: 0 10px 25px -5px var(--cyber-glow-2);
+      transition: all 0.3s ease;
     }
 
-    /* Assinatura no canto inferior esquerdo */
-    .signature {
+    .modal-action-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 15px 30px -5px var(--cyber-glow-1);
+    }
+
+    /* Cyberpunk Footer */
+    footer {
+      padding: 24px 20px;
+      border-top: 1px solid var(--hud-line);
+      background: var(--card-bg);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .footer-left-credit {
       position: absolute;
       left: 24px;
-      font-size: 11px;
-      font-weight: 600;
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1px;
       color: var(--muted);
-      opacity: 0.8;
-      letter-spacing: 0.5px;
+      text-transform: uppercase;
     }
 
-    /* Ajustes para Celulares */
+    .footer-center-brand {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: var(--ink);
+    }
+
     @media (max-width: 600px) {
-      body::before, body::after {
-        display: none;
+      .viewport-container {
+        padding-top: 74px;
       }
-      .portrait-wrap {
-        width: 90%;
-        max-width: 320px;
-        height: auto;
-        aspect-ratio: 16 / 9;
+      .controls-pill-group {
+        top: 14px;
+        left: 14px;
       }
-      .portrait-wrap img {
-        height: 100%;
-      }
-      .lang-switch-container {
-        padding: 4px 8px;
-        gap: 4px;
-      }
-      .lang-btn {
-        font-size: 11px;
-        padding: 1px 3px;
-      }
-      .theme-toggle-btn, .music-toggle-btn {
-        padding: 5px 10px;
-        font-size: 14px;
-      }
-      .main-wrapper {
-        padding-top: 64px !important;
+      .cyber-btn {
+        padding: 6px 12px;
+        font-size: 9px;
       }
       footer {
         flex-direction: column;
-        gap: 8px;
+        gap: 6px;
+        padding: 18px;
       }
-      .signature {
+      .footer-left-credit {
         position: static;
-        margin-top: 4px;
       }
     }
   </style>
 </head>
 <body>
 
-  <!-- Elemento de Áudio Oculto -->
+  <!-- Cyberpunk Scanlines FX -->
+  <div class="scanlines"></div>
+
+  <!-- Holographic Ambient Canvas -->
+  <canvas id="cyber-canvas"></canvas>
+
+  <!-- Audio Element -->
   <audio id="bgAudio" loop src="musica.mp3"></audio>
 
-  <!-- Controles do Canto Superior Esquerdo -->
-  <div class="left-controls-container notranslate">
-    <!-- Botão de Modo Escuro -->
-    <button class="theme-toggle-btn" id="themeBtn" onclick="toggleTheme()" title="Alternar Modo Escuro">🌙</button>
+  <!-- Floating Left Controls -->
+  <div class="controls-pill-group">
+    <button class="cyber-btn" id="themeBtn" onclick="toggleTheme()" title="Alternar Modo Claro/Escuro">
+      <span class="status-dot"></span>
+      <span>MODO: <strong id="themeText">LIGHT</strong></span>
+    </button>
 
-    <!-- Botão de Música -->
-    <button class="music-toggle-btn" id="musicBtn" onclick="toggleMusic()" title="Alternar Música">🔇</button>
+    <button class="cyber-btn" id="musicBtn" onclick="toggleMusic()" title="Alternar Áudio">
+      <i class="fa-solid fa-volume-high" style="font-size: 10px; color: var(--accent-pink);"></i>
+      <span>ÁUDIO: <strong id="musicText">OFF</strong></span>
+    </button>
   </div>
 
-  <!-- Menu Flutuante de Idiomas (Canto Superior Direito) -->
-  <div class="lang-switch-container notranslate">
-    <button class="lang-btn" onclick="changeLanguage('pt-PT')" title="Português (Portugal)">PT</button>
-    <button class="lang-btn" onclick="changeLanguage('en')" title="English">US</button>
-    <button class="lang-btn" onclick="changeLanguage('es')" title="Español">ES</button>
-    <button class="lang-btn" onclick="changeLanguage('de')" title="Deutsch">DE</button>
-    <button class="lang-btn" onclick="changeLanguage('ja')" title="日本語">JP</button>
-    <button class="lang-btn" onclick="changeLanguage('ru')" title="Русский">RU</button>
-  </div>
-
-  <div class="main-wrapper" style="padding: 48px 0; width: 100%; position: relative; z-index: 2;">
-    <header style="padding: 0 24px; margin-bottom: 32px;">
+  <!-- Viewport Container -->
+  <div class="viewport-container">
+    
+    <!-- HUD Header Showcase -->
+    <header class="hud-header">
       
-      <!-- Foto da loja retangular e maior -->
-      <div class="portrait-wrap" style="margin-bottom: 24px;">
-        <img src="logo.webp" alt="Logo DETOUR STORE">
+      <!-- 3D Holographic Square Framed Logo -->
+      <div class="holo-logo-frame">
+        <div class="holo-logo-inner">
+          <img src="logo.webp" alt="DETOUR STORE Logo" class="holo-img" onerror="this.onerror=null; this.src='https://placehold.co/300x300/ffb6c1/ffffff?text=DETOUR+STORE';">
+        </div>
       </div>
 
-      <p class="eyebrow" style="margin-bottom: 12px;">
-        ✦ MM2 · ROBUX · FTF · ROBLOX ✦
-      </p>
+      <!-- Store Status Pill -->
+      <div class="live-status-pill">
+        <span class="status-dot" style="background: var(--accent-cyan);"></span>
+        STORE ONLINE &amp; READY
+      </div>
 
-      <p style="font-size: 14px; max-width: 360px; margin: 0 auto; color: var(--muted);">
+      <h1 class="hud-title">DETOUR STORE</h1>
+      <p class="hud-subtitle">✦ MM2 · ROBUX · FTF · ROBLOX ✦</p>
+      <p class="hud-desc">
         As melhores facas de MM2, Robux e marretas/sets do Flee the Facility pelos menores preços. Rápido, seguro e garantido! 𖹭.ᐟ
       </p>
     </header>
 
-    <main class="link-tree-container">
+    <!-- Interactive Roblox Items Showcase (Balloons side-by-side) -->
+    <section class="showcase-section">
+      <div class="section-title">
+        <i class="fa-solid fa-bolt" style="color: var(--accent-pink);"></i>
+        Destaques Roblox
+      </div>
+      
+      <!-- Flexbox horizontal scrolling track -->
+      <div class="carousel-track">
+        <!-- Item 1: MM2 Knife -->
+        <div class="product-card">
+          <div class="product-icon-wrap">
+            <i class="fa-solid fa-wand-magic-sparkles"></i>
+          </div>
+          <div>
+            <div class="product-name">MM2 Godlies &amp; Knives</div>
+            <div class="product-tag">Raridades Exclusivas</div>
+          </div>
+          <span class="product-price">Melhor Preço</span>
+        </div>
+
+        <!-- Item 2: Robux -->
+        <div class="product-card">
+          <div class="product-icon-wrap" style="color: var(--accent-pink);">
+            <i class="fa-solid fa-gem"></i>
+          </div>
+          <div>
+            <div class="product-name">Pacotes de Robux</div>
+            <div class="product-tag">Entrega Imediata</div>
+          </div>
+          <span class="product-price" style="background: var(--accent-cyan); color: #000;">Oferta Spec</span>
+        </div>
+
+        <!-- Item 3: FTF Hammers -->
+        <div class="product-card">
+          <div class="product-icon-wrap" style="color: var(--accent-purple);">
+            <i class="fa-solid fa-hammer"></i>
+          </div>
+          <div>
+            <div class="product-name">FTF Sets &amp; Hammers</div>
+            <div class="product-tag">Flee The Facility</div>
+          </div>
+          <span class="product-price">Garanta Já</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Main Links Section -->
+    <main class="links-stack">
       
       <!-- Link Discord -->
-      <a href="https://discord.gg/aGSDnmpuw" target="_blank" rel="noopener noreferrer" class="link-card">
-        <span>✉ Servidor no Discord</span>
-        <span class="badge">Oficial</span>
+      <a href="https://discord.gg/aGSDnmpuw" target="_blank" rel="noopener noreferrer" class="cyber-link-card">
+        <div class="card-left">
+          <div class="card-icon-box">
+            <i class="fa-brands fa-discord"></i>
+          </div>
+          <span class="card-text">Servidor no Discord</span>
+        </div>
+        <span class="card-badge">Oficial</span>
       </a>
 
       <!-- Link TikTok -->
-      <a href="https://www.tiktok.com/@detour_store" target="_blank" rel="noopener noreferrer" class="link-card">
-        <span>♫ TikTok da Loja</span>
-        <span class="badge">Oficial</span>
+      <a href="https://www.tiktok.com/@detour_store" target="_blank" rel="noopener noreferrer" class="cyber-link-card">
+        <div class="card-left">
+          <div class="card-icon-box">
+            <i class="fa-brands fa-tiktok"></i>
+          </div>
+          <span class="card-text">TikTok da Loja</span>
+        </div>
+        <span class="card-badge">Oficial</span>
       </a>
 
-      <!-- Botão Termos Detour Store -->
-      <a href="#diretrizes-modal" class="link-card">
-        <span>🗐 Termos Detour Store</span>
-        <span class="badge">Ler</span>
+      <!-- Modal Termos -->
+      <a href="#diretrizes-modal" class="cyber-link-card">
+        <div class="card-left">
+          <div class="card-icon-box">
+            <i class="fa-solid fa-scroll"></i>
+          </div>
+          <span class="card-text">Termos Detour Store</span>
+        </div>
+        <span class="card-badge">Ler</span>
       </a>
 
-      <!-- Botão Regras DS -->
-      <a href="#shop-modal" class="link-card">
-        <span>🗁 Regras DS</span>
-        <span class="badge">Ler</span>
+      <!-- Modal Regras -->
+      <a href="#shop-modal" class="cyber-link-card">
+        <div class="card-left">
+          <div class="card-icon-box">
+            <i class="fa-solid fa-shield-halved"></i>
+          </div>
+          <span class="card-text">Regras DS</span>
+        </div>
+        <span class="card-badge">Ler</span>
       </a>
 
-      <!-- Botão Loja Parceira -->
-      <a href="#parceira-modal" class="link-card">
-        <span>🤝 Loja Parceira</span>
-        <span class="badge">Ver</span>
+      <!-- Modal Loja Parceira -->
+      <a href="#parceira-modal" class="cyber-link-card">
+        <div class="card-left">
+          <div class="card-icon-box">
+            <i class="fa-solid fa-handshake"></i>
+          </div>
+          <span class="card-text">Loja Parceira</span>
+        </div>
+        <span class="card-badge">Ver</span>
       </a>
 
     </main>
   </div>
 
-  <!-- Pop-up 1: Termos Detour Store -->
-  <div id="diretrizes-modal" class="modal">
-    <div class="modal-content">
-      <a href="#" class="modal-close">✕</a>
+  <!-- Custom Pop-up Modal 1: Termos Detour Store -->
+  <div id="diretrizes-modal" class="hud-modal-overlay">
+    <div class="hud-modal-card">
+      <a href="#" class="modal-close-btn" aria-label="Fechar">✕</a>
+      <h2 class="modal-head-title">TERMOS DETOUR STORE</h2>
       
-      <h2 class="display" style="font-size: 20px; font-weight: bold; margin-bottom: 16px; text-align: center; color: var(--accent-pink);">╭🩵 ┈┈ ꒰ TERMOS DETOUR STORE ꒱ ┈┈ 🌸╮</h2>
-      
-      <p style="font-size: 13px; margin-bottom: 16px; text-align: center; color: var(--accent-pink); font-weight: 600;">
-        ♡ Ao realizar uma compra em nossa loja, você declara estar ciente e de acordo com os termos e condições apresentados abaixo.
+      <p style="text-align: center; color: var(--accent-pink); font-size: 13px; font-weight: 600; margin-bottom: 16px;">
+        ♡ Ao realizar uma compra em nossa loja, você declara estar ciente e de acordo com os termos abaixo:
       </p>
 
-      <div class="space-y">
-        <p><strong>→ Política de Entrega:</strong><br>Após a confirmação do pagamento, o prazo de entrega é de até 4 dias.<br>Em caso de encomendas, o prazo poderá ser diferente e será previamente combinado entre o cliente e o responsável pela entrega, por meio do ticket de atendimento.</p>
-        
-        <p><strong>→ Política de Reembolso:</strong><br>Os reembolsos serão realizados exclusivamente em casos de erro por parte da equipe da loja.</p>
-        
-        <p><strong>→ Responsabilidades do Cliente:</strong><br>É fundamental fornecer informações precisas e completas sobre o pedido, verificando todos os dados antes de finalizar (conta Roblox, valores, método de pagamento). Recomendamos a leitura completa dos termos de compra. Erros decorrentes de informações incorretas fornecidas pelo cliente não são nossa responsabilidade.</p>
-        
-        <p><strong>→ Responsabilidade da Equipe Detour:</strong><br>Oferecemos tratamento respeitoso, cordial e profissional em todas as interações, com atenção individualizada focada na resolução eficiente de suas necessidades. Cumprimos rigorosamente os prazos estabelecidos e garantimos proteção integral dos seus dados pessoais e informações de conta. Não comercializamos, compartilhamos ou divulgamos dados a terceiros.</p>
-        
-        <p style="font-size: 13px; text-align: center; font-weight: 700; color: var(--accent-pink); margin-top: 18px;">
-          Agradecemos pela confiança e preferência! 𖹭.ᐟ
-        </p>
+      <div class="modal-info-card">
+        <div class="modal-info-head">→ Política de Entrega</div>
+        <div class="modal-info-body">Após a confirmação do pagamento, o prazo de entrega é de até 4 dias. Em caso de encomendas, o prazo é combinado diretamente no ticket.</div>
       </div>
+
+      <div class="modal-info-card">
+        <div class="modal-info-head">→ Política de Reembolso</div>
+        <div class="modal-info-body">Os reembolsos serão realizados exclusivamente em casos de eventuais erros por parte da equipe da loja.</div>
+      </div>
+
+      <div class="modal-info-card">
+        <div class="modal-info-head">→ Responsabilidades do Cliente</div>
+        <div class="modal-info-body">É fundamental fornecer informações precisas (conta Roblox, pedido e valores). Erros decorrentes de dados incorretos informados pelo cliente não serão de nossa responsabilidade.</div>
+      </div>
+
+      <div class="modal-info-card">
+        <div class="modal-info-head">→ Responsabilidade Detour</div>
+        <div class="modal-info-body">Oferecemos atendimento cordial e profissional, cumprimos os prazos e garantimos a proteção total dos seus dados e informações de conta.</div>
+      </div>
+
+      <p style="text-align: center; font-weight: 700; color: var(--accent-pink); margin-top: 16px; font-size: 13px;">
+        Agradecemos pela confiança e preferência! 𖹭.ᐟ
+      </p>
     </div>
   </div>
 
-  <!-- Pop-up 2: Regras DS -->
-  <div id="shop-modal" class="modal">
-    <div class="modal-content">
-      <a href="#" class="modal-close">✕</a>
-      
-      <h2 class="display" style="font-size: 20px; font-weight: bold; margin-bottom: 16px; text-align: center; color: var(--accent-pink);">𝒓𝒆𝒈𝒓𝒂𝒔 𝒅𝒐 𝒔𝒆𝒓𝒗𝒊𝒅𝒐𝒓 ‧₊˚・</h2>
-      
-      <div class="space-y">
-        <p><strong>01. Respeite todos:</strong> Trate todos os membros com educação e respeito. Não serão tolerados preconceito, discriminação, assédio ou ofensas.</p>
-        <p><strong>02. Sem venda entre membros:</strong> Será completamente repreendida qualquer tentativa de venda entre membros.</p>
-        <p><strong>03. Sem spam:</strong> Não envie mensagens repetidas, excesso de marcações ou divulgações sem autorização da equipe.</p>
-        <p><strong>04. Respeite a privacidade:</strong> Não compartilhe informações pessoais, fotos ou conversas privadas de outros membros sem consentimento.</p>
-        <p><strong>05. Mantenha o ambiente seguro:</strong> Conteúdos ilegais, abusivos ou que coloquem outros membros em risco não serão permitidos.</p>
-        <p><strong>06. Respeite a equipe:</strong> Siga as orientações da equipe de moderação. Caso tenha algum problema, entre em contato com um moderador.</p>
-        <p><strong>07. Siga as diretrizes do Discord:</strong> Todos devem respeitar os Termos de Serviço e as Diretrizes da Comunidade do Discord.</p>
-        
-        <p style="font-size: 12px; text-align: center; font-weight: 600; color: var(--accent-pink); margin-top: 16px;">
-          O descumprimento dessas regras pode ocasionar em punições.<br>Sejam bem-vindos a Detour Store! 𖹭.ᐟ
-        </p>
+  <!-- Custom Pop-up Modal 2: Regras DS -->
+  <div id="shop-modal" class="hud-modal-overlay">
+    <div class="hud-modal-card">
+      <a href="#" class="modal-close-btn" aria-label="Fechar">✕</a>
+      <h2 class="modal-head-title">REGRAS DO SERVIDOR</h2>
+
+      <div class="modal-info-card">
+        <div class="modal-info-head">01. Respeite todos</div>
+        <div class="modal-info-body">Trate todos com educação e respeito. Não toleramos preconceito, discriminação ou ofensas.</div>
       </div>
+
+      <div class="modal-info-card">
+        <div class="modal-info-head">02. Sem vendas entre membros</div>
+        <div class="modal-info-body">Será repreendida qualquer tentativa de comercialização ou venda entre membros.</div>
+      </div>
+
+      <div class="modal-info-card">
+        <div class="modal-info-head">03. Sem spam</div>
+        <div class="modal-info-body">Não envie mensagens repetidas, marcações excessivas ou divulgações não autorizadas.</div>
+      </div>
+
+      <div class="modal-info-card">
+        <div class="modal-info-head">04. Respeite a privacidade</div>
+        <div class="modal-info-body">Não compartilhe dados pessoais, fotos ou conversas privadas sem consentimento prévio.</div>
+      </div>
+
+      <div class="modal-info-card">
+        <div class="modal-info-head">05. Ambiente seguro</div>
+        <div class="modal-info-body">Conteúdos ilegais ou abusivos resultarão em punição e remoção imediata.</div>
+      </div>
+
+      <div class="modal-info-card">
+        <div class="modal-info-head">06. Respeite a equipe</div>
+        <div class="modal-info-body">Siga as orientações dos moderadores para manter a organização e boa convivência.</div>
+      </div>
+
+      <div class="modal-info-card">
+        <div class="modal-info-head">07. Diretrizes do Discord</div>
+        <div class="modal-info-body">Todos devem respeitar os Termos de Serviço e as Diretrizes Oficiais da Comunidade do Discord.</div>
+      </div>
+
+      <p style="text-align: center; font-size: 12px; font-weight: 700; color: var(--accent-pink); margin-top: 14px;">
+        Sejam bem-vindos a Detour Store! 𖹭.ᐟ
+      </p>
     </div>
   </div>
 
-  <!-- Pop-up 3: Loja Parceira -->
-  <div id="parceira-modal" class="modal">
-    <div class="modal-content" style="text-align: center;">
-      <a href="#" class="modal-close">✕</a>
+  <!-- Custom Pop-up Modal 3: Loja Parceira -->
+  <div id="parceira-modal" class="hud-modal-overlay">
+    <div class="hud-modal-card" style="text-align: center;">
+      <a href="#" class="modal-close-btn" aria-label="Fechar">✕</a>
+      <h2 class="modal-head-title">🌸 L&amp;M SHOP 🩵</h2>
       
-      <h2 class="display" style="font-size: 20px; font-weight: bold; margin-bottom: 12px; color: var(--accent-pink);"> L&amp;M SHOP </h2>
-      
-      <p style="font-size: 13px; color: var(--muted); margin-bottom: 16px;">
-        Conheça a nossa loja parceira oficial! Clique nos botões abaixo para acessar o site, o Discord e o TikTok recomendado:
+      <p style="color: var(--muted); font-size: 13px; margin-bottom: 18px;">
+        Conheça a nossa loja parceira oficial! Acesse os links abaixo para conferir:
       </p>
 
-      <div class="space-y" style="margin-bottom: 20px;">
-        <p><strong>🌸 L&amp;M SHOP</strong></p>
-        <p style="font-size: 12px;">Qualidade e confiança garantidas pela equipe DETOUR STORE! 𖹭.ᐟ</p>
-      </div>
+      <a href="https://github.com/LMSSHOP/lmshop" target="_blank" rel="noopener noreferrer" class="modal-action-btn">
+        <i class="fa-solid fa-globe"></i>
+        <span>Website L&amp;M SHOP</span>
+      </a>
 
-      <!-- Link do Site GitHub da L&M SHOP -->
-      <a href="https://github.com/LMSSHOP/lmshop" target="_blank" rel="noopener noreferrer" class="copy-btn" style="display: block; text-decoration: none; margin-bottom: 10px;">🌐 Site L&amp;M SHOP</a>
-      
-      <a href="https://discord.gg/lmshopmm2" target="_blank" rel="noopener noreferrer" class="copy-btn" style="display: block; text-decoration: none; margin-bottom: 10px;">✉ Servidor no Discord</a>
-      <a href="https://www.tiktok.com/@lm.shopp__" target="_blank" rel="noopener noreferrer" class="copy-btn" style="display: block; text-decoration: none; background: #000000;">♫ TikTok L&amp;M SHOP</a>
+      <a href="https://discord.gg/lmshopmm2" target="_blank" rel="noopener noreferrer" class="modal-action-btn" style="background: linear-gradient(135deg, #5865F2, #404EED);">
+        <i class="fa-brands fa-discord"></i>
+        <span>Servidor no Discord</span>
+      </a>
+
+      <a href="https://www.tiktok.com/@lm.shopp__" target="_blank" rel="noopener noreferrer" class="modal-action-btn" style="background: #111111;">
+        <i class="fa-brands fa-tiktok"></i>
+        <span>TikTok L&amp;M SHOP</span>
+      </a>
     </div>
   </div>
 
+  <!-- Footer with Credits -->
   <footer>
-    <span class="signature">Criado por Ay_sousz</span>
-    <p style="font-size: 12px; font-weight: 500; color: var(--muted); margin: 0;">🌸 DETOUR STORE 🩵</p>
+    <span class="footer-left-credit">Criado por Ay_sousz</span>
+    <div class="footer-center-brand"> DETOUR STORE </div>
   </footer>
 
-  <!-- Elemento invisível do Google Tradutor -->
-  <div id="google_translate_element" style="display:none;"></div>
+  <!-- Script Engine -->
+  <script>
+    // Holographic Ambient Particle Engine
+    const canvas = document.getElementById('cyber-canvas');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
 
-  <script type="text/javascript">
+    function fitCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', fitCanvas);
+    fitCanvas();
+
+    class HologramParticle {
+      constructor() {
+        this.reset();
+      }
+      reset() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.size = Math.random() * 2.5 + 0.5;
+        this.speedX = (Math.random() - 0.5) * 0.4;
+        this.speedY = (Math.random() - 0.5) * 0.4;
+        this.alpha = Math.random() * 0.6 + 0.1;
+      }
+      update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+        if (this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) {
+          this.reset();
+        }
+      }
+      draw() {
+        ctx.save();
+        ctx.globalAlpha = this.alpha;
+        const colorPink = getComputedStyle(document.body).getPropertyValue('--accent-pink').trim();
+        ctx.fillStyle = colorPink || '#ffb6c1';
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+      }
+    }
+
+    for (let i = 0; i < 45; i++) {
+      particles.push(new HologramParticle());
+    }
+
+    function renderEngine() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach(p => {
+        p.update();
+        p.draw();
+      });
+      requestAnimationFrame(renderEngine);
+    }
+    renderEngine();
+
+    // Audio Autoplay & Toggle Controls
     const audio = document.getElementById('bgAudio');
-    const musicBtn = document.getElementById('musicBtn');
-    let hasPlayed = false;
+    const musicText = document.getElementById('musicText');
+    let isPlaying = false;
 
-    // Toca o áudio e atualiza o ícone do botão para 🎵
-    function playAudio() {
-      if (!hasPlayed) {
+    function playAudioOnce() {
+      if (!isPlaying) {
         audio.play().then(() => {
-          musicBtn.textContent = '🎵';
-          hasPlayed = true;
+          musicText.textContent = 'ON';
+          isPlaying = true;
         }).catch(err => {
-          console.log("Aguardando interação...", err);
+          console.log("Waiting for user interaction to trigger audio...", err);
         });
       }
     }
 
-    // Adiciona evento para iniciar a música ao clicar em QUALQUER lugar/botão do site
     window.addEventListener('DOMContentLoaded', () => {
-      // Tenta tocar de imediato (caso o navegador permita)
       audio.play().then(() => {
-        musicBtn.textContent = '🎵';
-        hasPlayed = true;
+        musicText.textContent = 'ON';
+        isPlaying = true;
       }).catch(() => {
-        // Se o navegador bloquear o autoplay, inicia ao apertar qualquer botão ou clicar na tela
-        document.addEventListener('click', playAudio, { once: true });
-        document.addEventListener('touchstart', playAudio, { once: true });
+        document.addEventListener('click', playAudioOnce, { once: true });
+        document.addEventListener('touchstart', playAudioOnce, { once: true });
       });
     });
 
-    // Função de clique manual no próprio botão de música
     function toggleMusic() {
       if (audio.paused) {
-        audio.play();
-        musicBtn.textContent = '🎵';
-        hasPlayed = true;
+        audio.play().then(() => {
+          musicText.textContent = 'ON';
+          isPlaying = true;
+        }).catch(() => {});
       } else {
         audio.pause();
-        musicBtn.textContent = '🔇';
+        musicText.textContent = 'OFF';
       }
     }
 
-    /* Função de Alternar Modo Escuro */
+    // Theme Switcher Logic (Light Pastel / Dark Cyberpunk)
     function toggleTheme() {
       const body = document.body;
-      const themeBtn = document.getElementById('themeBtn');
+      const themeText = document.getElementById('themeText');
+      
       body.classList.toggle('dark-mode');
       
       if (body.classList.contains('dark-mode')) {
-        themeBtn.textContent = '🌙';
+        themeText.textContent = 'DARK';
       } else {
-        themeBtn.textContent = '☀️';
-      }
-    }
-
-    /* Funções do Tradutor */
-    function googleTranslateElementInit() {
-      new google.translate.TranslateElement({
-        pageLanguage: 'pt',
-        autoDisplay: false
-      }, 'google_translate_element');
-    }
-
-    function changeLanguage(langCode) {
-      var select = document.querySelector('.goog-te-combo');
-      if (select) {
-        select.value = langCode;
-        select.dispatchEvent(new Event('change'));
+        themeText.textContent = 'LIGHT';
       }
     }
   </script>
-  <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-
 </body>
 </html>
