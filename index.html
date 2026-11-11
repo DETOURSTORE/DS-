@@ -79,7 +79,9 @@
       min-height: 100vh;
       color: var(--ink);
       font-family: 'Plus Jakarta Sans', sans-serif;
-      background-color: var(--bg-base);
+      /* CONFIGURAÇÃO DO PAPEL DE PAREDE (GIF/IMAGEM) */
+      background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('fundo-patos.gif') no-repeat center center fixed;
+      background-size: cover;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -97,17 +99,6 @@
       opacity: var(--scanline-opacity);
       pointer-events: none;
       z-index: 99;
-    }
-
-    /* Ambient Holographic Glow Canvas */
-    #cyber-canvas {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: 0;
     }
 
     /* Top Left Floating Control Pills */
@@ -299,7 +290,6 @@
       background: var(--hud-line);
     }
 
-    /* FLEXBOX TRACK: Keeps balloons side by side with smooth horizontal scrolling */
     .carousel-track {
       display: flex;
       flex-direction: row;
@@ -314,10 +304,6 @@
 
     .carousel-track::-webkit-scrollbar {
       height: 5px;
-    }
-
-    .carousel-track::-webkit-scrollbar-track {
-      background: transparent;
     }
 
     .carousel-track::-webkit-scrollbar-thumb {
@@ -335,7 +321,6 @@
       padding: 14px;
       box-shadow: var(--card-shadow);
       backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
       transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       position: relative;
       overflow: hidden;
@@ -413,7 +398,6 @@
       text-decoration: none;
       box-shadow: var(--card-shadow);
       backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
       transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       overflow: hidden;
     }
@@ -501,7 +485,6 @@
       width: 100vw; height: 100vh;
       background: var(--modal-overlay);
       backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
       z-index: 300;
       display: flex;
       align-items: center;
@@ -529,7 +512,6 @@
       position: relative;
       box-shadow: 0 25px 60px -10px rgba(0, 0, 0, 0.5), 0 0 30px var(--hud-line);
       backdrop-filter: blur(25px);
-      -webkit-backdrop-filter: blur(25px);
       transform: translateY(20px) scale(0.95);
       transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       text-align: left;
@@ -537,14 +519,6 @@
 
     .hud-modal-overlay:target .hud-modal-card {
       transform: translateY(0) scale(1);
-    }
-
-    .hud-modal-card::-webkit-scrollbar {
-      width: 4px;
-    }
-    .hud-modal-card::-webkit-scrollbar-thumb {
-      background: var(--accent-cyan);
-      border-radius: 9999px;
     }
 
     .modal-close-btn {
@@ -636,7 +610,6 @@
       border-top: 1px solid var(--hud-line);
       background: var(--card-bg);
       backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
       z-index: 2;
       display: flex;
       align-items: center;
@@ -664,25 +637,11 @@
     }
 
     @media (max-width: 600px) {
-      .viewport-container {
-        padding-top: 74px;
-      }
-      .controls-pill-group {
-        top: 14px;
-        left: 14px;
-      }
-      .cyber-btn {
-        padding: 6px 12px;
-        font-size: 9px;
-      }
-      footer {
-        flex-direction: column;
-        gap: 6px;
-        padding: 18px;
-      }
-      .footer-left-credit {
-        position: static;
-      }
+      .viewport-container { padding-top: 74px; }
+      .controls-pill-group { top: 14px; left: 14px; }
+      .cyber-btn { padding: 6px 12px; font-size: 9px; }
+      footer { flex-direction: column; gap: 6px; padding: 18px; }
+      .footer-left-credit { position: static; }
     }
   </style>
 </head>
@@ -690,9 +649,6 @@
 
   <!-- Cyberpunk Scanlines FX -->
   <div class="scanlines"></div>
-
-  <!-- Holographic Ambient Canvas -->
-  <canvas id="cyber-canvas"></canvas>
 
   <!-- Audio Element -->
   <audio id="bgAudio" loop src="musica.mp3"></audio>
@@ -736,16 +692,15 @@
       </p>
     </header>
 
-    <!-- Interactive Roblox Items Showcase (Balloons side-by-side) -->
+    <!-- Interactive Roblox Items Showcase -->
     <section class="showcase-section">
       <div class="section-title">
         <i class="fa-solid fa-bolt" style="color: var(--accent-pink);"></i>
         Destaques Roblox
       </div>
       
-      <!-- Flexbox horizontal scrolling track -->
       <div class="carousel-track">
-        <!-- Item 1: MM2 Knife -->
+        <!-- Item 1 -->
         <div class="product-card">
           <div class="product-icon-wrap">
             <i class="fa-solid fa-wand-magic-sparkles"></i>
@@ -757,7 +712,7 @@
           <span class="product-price">Melhor Preço</span>
         </div>
 
-        <!-- Item 2: Robux -->
+        <!-- Item 2 -->
         <div class="product-card">
           <div class="product-icon-wrap" style="color: var(--accent-pink);">
             <i class="fa-solid fa-gem"></i>
@@ -769,7 +724,7 @@
           <span class="product-price" style="background: var(--accent-cyan); color: #000;">Oferta Spec</span>
         </div>
 
-        <!-- Item 3: FTF Hammers -->
+        <!-- Item 3 -->
         <div class="product-card">
           <div class="product-icon-wrap" style="color: var(--accent-purple);">
             <i class="fa-solid fa-hammer"></i>
@@ -785,8 +740,6 @@
 
     <!-- Main Links Section -->
     <main class="links-stack">
-      
-      <!-- Link Discord -->
       <a href="https://discord.gg/aGSDnmpuw" target="_blank" rel="noopener noreferrer" class="cyber-link-card">
         <div class="card-left">
           <div class="card-icon-box">
@@ -797,7 +750,6 @@
         <span class="card-badge">Oficial</span>
       </a>
 
-      <!-- Link TikTok -->
       <a href="https://www.tiktok.com/@detour_store" target="_blank" rel="noopener noreferrer" class="cyber-link-card">
         <div class="card-left">
           <div class="card-icon-box">
@@ -808,7 +760,6 @@
         <span class="card-badge">Oficial</span>
       </a>
 
-      <!-- Modal Termos -->
       <a href="#diretrizes-modal" class="cyber-link-card">
         <div class="card-left">
           <div class="card-icon-box">
@@ -819,7 +770,6 @@
         <span class="card-badge">Ler</span>
       </a>
 
-      <!-- Modal Regras -->
       <a href="#shop-modal" class="cyber-link-card">
         <div class="card-left">
           <div class="card-icon-box">
@@ -830,7 +780,6 @@
         <span class="card-badge">Ler</span>
       </a>
 
-      <!-- Modal Loja Parceira -->
       <a href="#parceira-modal" class="cyber-link-card">
         <div class="card-left">
           <div class="card-icon-box">
@@ -840,185 +789,58 @@
         </div>
         <span class="card-badge">Ver</span>
       </a>
-
     </main>
   </div>
 
-  <!-- Custom Pop-up Modal 1: Termos Detour Store -->
+  <!-- Modais (Termos, Regras, Parceira) -->
   <div id="diretrizes-modal" class="hud-modal-overlay">
     <div class="hud-modal-card">
       <a href="#" class="modal-close-btn" aria-label="Fechar">✕</a>
       <h2 class="modal-head-title">TERMOS DETOUR STORE</h2>
-      
       <p style="text-align: center; color: var(--accent-pink); font-size: 13px; font-weight: 600; margin-bottom: 16px;">
         ♡ Ao realizar uma compra em nossa loja, você declara estar ciente e de acordo com os termos abaixo:
       </p>
-
       <div class="modal-info-card">
         <div class="modal-info-head">→ Política de Entrega</div>
         <div class="modal-info-body">Após a confirmação do pagamento, o prazo de entrega é de até 4 dias. Em caso de encomendas, o prazo é combinado diretamente no ticket.</div>
       </div>
-
       <div class="modal-info-card">
         <div class="modal-info-head">→ Política de Reembolso</div>
         <div class="modal-info-body">Os reembolsos serão realizados exclusivamente em casos de eventuais erros por parte da equipe da loja.</div>
       </div>
-
-      <div class="modal-info-card">
-        <div class="modal-info-head">→ Responsabilidades do Cliente</div>
-        <div class="modal-info-body">É fundamental fornecer informações precisas (conta Roblox, pedido e valores). Erros decorrentes de dados incorretos informados pelo cliente não serão de nossa responsabilidade.</div>
-      </div>
-
-      <div class="modal-info-card">
-        <div class="modal-info-head">→ Responsabilidade Detour</div>
-        <div class="modal-info-body">Oferecemos atendimento cordial e profissional, cumprimos os prazos e garantimos a proteção total dos seus dados e informações de conta.</div>
-      </div>
-
-      <p style="text-align: center; font-weight: 700; color: var(--accent-pink); margin-top: 16px; font-size: 13px;">
-        Agradecemos pela confiança e preferência! 𖹭.ᐟ
-      </p>
     </div>
   </div>
 
-  <!-- Custom Pop-up Modal 2: Regras DS -->
   <div id="shop-modal" class="hud-modal-overlay">
     <div class="hud-modal-card">
       <a href="#" class="modal-close-btn" aria-label="Fechar">✕</a>
       <h2 class="modal-head-title">REGRAS DO SERVIDOR</h2>
-
       <div class="modal-info-card">
         <div class="modal-info-head">01. Respeite todos</div>
         <div class="modal-info-body">Trate todos com educação e respeito. Não toleramos preconceito, discriminação ou ofensas.</div>
       </div>
-
-      <div class="modal-info-card">
-        <div class="modal-info-head">02. Sem vendas entre membros</div>
-        <div class="modal-info-body">Será repreendida qualquer tentativa de comercialização ou venda entre membros.</div>
-      </div>
-
-      <div class="modal-info-card">
-        <div class="modal-info-head">03. Sem spam</div>
-        <div class="modal-info-body">Não envie mensagens repetidas, marcações excessivas ou divulgações não autorizadas.</div>
-      </div>
-
-      <div class="modal-info-card">
-        <div class="modal-info-head">04. Respeite a privacidade</div>
-        <div class="modal-info-body">Não compartilhe dados pessoais, fotos ou conversas privadas sem consentimento prévio.</div>
-      </div>
-
-      <div class="modal-info-card">
-        <div class="modal-info-head">05. Ambiente seguro</div>
-        <div class="modal-info-body">Conteúdos ilegais ou abusivos resultarão em punição e remoção imediata.</div>
-      </div>
-
-      <div class="modal-info-card">
-        <div class="modal-info-head">06. Respeite a equipe</div>
-        <div class="modal-info-body">Siga as orientações dos moderadores para manter a organização e boa convivência.</div>
-      </div>
-
-      <div class="modal-info-card">
-        <div class="modal-info-head">07. Diretrizes do Discord</div>
-        <div class="modal-info-body">Todos devem respeitar os Termos de Serviço e as Diretrizes Oficiais da Comunidade do Discord.</div>
-      </div>
-
-      <p style="text-align: center; font-size: 12px; font-weight: 700; color: var(--accent-pink); margin-top: 14px;">
-        Sejam bem-vindos a Detour Store! 𖹭.ᐟ
-      </p>
     </div>
   </div>
 
-  <!-- Custom Pop-up Modal 3: Loja Parceira -->
   <div id="parceira-modal" class="hud-modal-overlay">
     <div class="hud-modal-card" style="text-align: center;">
       <a href="#" class="modal-close-btn" aria-label="Fechar">✕</a>
       <h2 class="modal-head-title">🌸 L&amp;M SHOP 🩵</h2>
-      
-      <p style="color: var(--muted); font-size: 13px; margin-bottom: 18px;">
-        Conheça a nossa loja parceira oficial! Acesse os links abaixo para conferir:
-      </p>
-
-      <a href="https://github.com/LMSSHOP/lmshop" target="_blank" rel="noopener noreferrer" class="modal-action-btn">
-        <i class="fa-solid fa-globe"></i>
-        <span>Website L&amp;M SHOP</span>
-      </a>
-
       <a href="https://discord.gg/lmshopmm2" target="_blank" rel="noopener noreferrer" class="modal-action-btn" style="background: linear-gradient(135deg, #5865F2, #404EED);">
         <i class="fa-brands fa-discord"></i>
         <span>Servidor no Discord</span>
       </a>
-
-      <a href="https://www.tiktok.com/@lm.shopp__" target="_blank" rel="noopener noreferrer" class="modal-action-btn" style="background: #111111;">
-        <i class="fa-brands fa-tiktok"></i>
-        <span>TikTok L&amp;M SHOP</span>
-      </a>
     </div>
   </div>
 
-  <!-- Footer with Credits -->
+  <!-- Footer -->
   <footer>
     <span class="footer-left-credit">Criado por Ay_sousz</span>
-    <div class="footer-center-brand"> DETOUR STORE </div>
+    <div class="footer-center-brand">🌸 DETOUR STORE 🩵</div>
   </footer>
 
   <!-- Script Engine -->
   <script>
-    // Holographic Ambient Particle Engine
-    const canvas = document.getElementById('cyber-canvas');
-    const ctx = canvas.getContext('2d');
-    let particles = [];
-
-    function fitCanvas() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    }
-    window.addEventListener('resize', fitCanvas);
-    fitCanvas();
-
-    class HologramParticle {
-      constructor() {
-        this.reset();
-      }
-      reset() {
-        this.x = Math.random() * canvas.width;
-        this.y = Math.random() * canvas.height;
-        this.size = Math.random() * 2.5 + 0.5;
-        this.speedX = (Math.random() - 0.5) * 0.4;
-        this.speedY = (Math.random() - 0.5) * 0.4;
-        this.alpha = Math.random() * 0.6 + 0.1;
-      }
-      update() {
-        this.x += this.speedX;
-        this.y += this.speedY;
-        if (this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) {
-          this.reset();
-        }
-      }
-      draw() {
-        ctx.save();
-        ctx.globalAlpha = this.alpha;
-        const colorPink = getComputedStyle(document.body).getPropertyValue('--accent-pink').trim();
-        ctx.fillStyle = colorPink || '#ffb6c1';
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.restore();
-      }
-    }
-
-    for (let i = 0; i < 45; i++) {
-      particles.push(new HologramParticle());
-    }
-
-    function renderEngine() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      particles.forEach(p => {
-        p.update();
-        p.draw();
-      });
-      requestAnimationFrame(renderEngine);
-    }
-    renderEngine();
-
     // Audio Autoplay & Toggle Controls
     const audio = document.getElementById('bgAudio');
     const musicText = document.getElementById('musicText');
@@ -1029,9 +851,7 @@
         audio.play().then(() => {
           musicText.textContent = 'ON';
           isPlaying = true;
-        }).catch(err => {
-          console.log("Waiting for user interaction to trigger audio...", err);
-        });
+        }).catch(err => {});
       }
     }
 
@@ -1057,11 +877,10 @@
       }
     }
 
-    // Theme Switcher Logic (Light Pastel / Dark Cyberpunk)
+    // Theme Switcher Logic
     function toggleTheme() {
       const body = document.body;
       const themeText = document.getElementById('themeText');
-      
       body.classList.toggle('dark-mode');
       
       if (body.classList.contains('dark-mode')) {
