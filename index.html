@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>DETOUR STORE — Holographic Roblox Emporium</title>
   
+  <!-- Favicon do Site (Aparece na aba do navegador no PC) -->
+  <link rel="icon" href="logo.webp" type="image/webp">
+
   <!-- Fonts: Orbitron & Rajdhani for Cyber UI, Plus Jakarta Sans for reading -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -40,28 +43,28 @@
     }
 
     body.dark-mode {
-      /* Theme Dark: Deep Space Cyberpunk */
-      --bg-base: #06070c;
-      --cyber-glow-1: #ff007f; /* Hot Pink */
-      --cyber-glow-2: #00f3ff; /* Neon Cyan */
-      --cyber-glow-3: #9d4edd; /* Electric Purple */
-      --ink: #f1f5f9;
+      /* Theme Dark: Cinza e Cinza Azulado Sofisticado */
+      --bg-base: #0f141c;
+      --cyber-glow-1: #38bdf8; /* Azul suave */
+      --cyber-glow-2: #64748b; /* Cinza Ardósia */
+      --cyber-glow-3: #94a3b8; /* Cinza Claro */
+      --ink: #f8fafc;
       --muted: #94a3b8;
-      --accent-pink: #ff007f;
-      --accent-cyan: #00f3ff;
-      --accent-purple: #9d4edd;
-      --card-bg: rgba(13, 16, 27, 0.65);
-      --card-border: rgba(0, 243, 255, 0.25);
-      --card-shadow: 0 20px 45px -10px rgba(0, 0, 0, 0.8), 0 0 25px rgba(0, 243, 255, 0.25);
-      --badge-bg: rgba(0, 243, 255, 0.1);
-      --badge-border: rgba(0, 243, 255, 0.4);
-      --badge-color: #00f3ff;
-      --modal-bg: rgba(10, 12, 22, 0.92);
-      --modal-overlay: rgba(3, 4, 8, 0.82);
-      --ctrl-bg: rgba(13, 16, 27, 0.8);
-      --ctrl-border: rgba(0, 243, 255, 0.3);
-      --hud-line: rgba(255, 0, 127, 0.3);
-      --scanline-opacity: 0.08;
+      --accent-pink: #38bdf8;
+      --accent-cyan: #38bdf8;
+      --accent-purple: #818cf8;
+      --card-bg: rgba(15, 23, 42, 0.75); /* Cinza azulado escuro translúcido */
+      --card-border: rgba(100, 116, 139, 0.3);
+      --card-shadow: 0 20px 45px -10px rgba(0, 0, 0, 0.7), 0 0 20px rgba(56, 189, 248, 0.1);
+      --badge-bg: rgba(56, 189, 248, 0.12);
+      --badge-border: rgba(56, 189, 248, 0.3);
+      --badge-color: #38bdf8;
+      --modal-bg: rgba(15, 23, 42, 0.92);
+      --modal-overlay: rgba(11, 15, 25, 0.85);
+      --ctrl-bg: rgba(30, 41, 59, 0.8);
+      --ctrl-border: rgba(100, 116, 139, 0.4);
+      --hud-line: rgba(100, 116, 139, 0.3);
+      --scanline-opacity: 0.05;
     }
 
     * {
@@ -79,7 +82,7 @@
       min-height: 100vh;
       color: var(--ink);
       font-family: 'Plus Jakarta Sans', sans-serif;
-      /* CONFIGURAÇÃO DO GIF DE PAPEL DE PAREDE */
+      /* CONFIGURAÇÃO DO GIF DE PAPEL DE PAREDE MANTIDO */
       background: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)), url('Post by @gothish · 2 images.gif') no-repeat center center fixed;
       background-size: cover;
       display: flex;
@@ -242,7 +245,7 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       text-transform: uppercase;
-      text-shadow: 0 0 30px rgba(0, 243, 255, 0.2);
+      text-shadow: 0 0 30px rgba(56, 189, 248, 0.2);
     }
 
     .hud-subtitle {
@@ -372,9 +375,9 @@
       font-weight: 700;
       padding: 4px 10px;
       border-radius: 9999px;
-      background: var(--accent-pink);
-      color: #ffffff;
-      box-shadow: 0 4px 12px rgba(244, 114, 182, 0.4);
+      background: var(--accent-cyan);
+      color: #000;
+      box-shadow: 0 4px 12px rgba(56, 189, 248, 0.3);
     }
 
     /* Main Action Links Stack */
@@ -406,7 +409,7 @@
       content: '';
       position: absolute;
       top: 0; left: 0; width: 4px; height: 100%;
-      background: linear-gradient(to bottom, var(--accent-pink), var(--accent-cyan));
+      background: linear-gradient(to bottom, var(--accent-cyan), var(--accent-purple));
       opacity: 0.7;
       transition: width 0.3s ease;
     }
@@ -439,7 +442,7 @@
       align-items: center;
       justify-content: center;
       font-size: 16px;
-      color: var(--accent-pink);
+      color: var(--accent-cyan);
       transition: transform 0.3s ease;
     }
 
@@ -540,8 +543,8 @@
     }
 
     .modal-close-btn:hover {
-      background: var(--accent-pink);
-      color: #ffffff;
+      background: var(--accent-cyan);
+      color: #000;
       transform: rotate(90deg);
     }
 
@@ -549,14 +552,14 @@
       font-family: 'Orbitron', sans-serif;
       font-size: 18px;
       font-weight: 800;
-      color: var(--accent-pink);
+      color: var(--accent-cyan);
       text-align: center;
       margin-bottom: 20px;
       letter-spacing: 1px;
     }
 
     .modal-info-card {
-      background: rgba(255, 255, 255, 0.04);
+      background: rgba(255, 255, 255, 0.03);
       border: 1px solid var(--hud-line);
       border-radius: 16px;
       padding: 14px 16px;
@@ -588,20 +591,20 @@
       padding: 14px;
       margin-top: 10px;
       border-radius: 9999px;
-      background: linear-gradient(135deg, var(--accent-pink), var(--accent-cyan));
+      background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
       color: #ffffff;
       font-family: 'Orbitron', sans-serif;
       font-size: 11px;
       font-weight: 700;
       letter-spacing: 1px;
       text-decoration: none;
-      box-shadow: 0 10px 25px -5px var(--cyber-glow-2);
+      box-shadow: 0 10px 25px -5px var(--cyber-glow-1);
       transition: all 0.3s ease;
     }
 
     .modal-action-btn:hover {
       transform: translateY(-2px);
-      box-shadow: 0 15px 30px -5px var(--cyber-glow-1);
+      box-shadow: 0 15px 30px -5px var(--cyber-glow-2);
     }
 
     /* Cyberpunk Footer */
@@ -657,11 +660,11 @@
   <div class="controls-pill-group">
     <button class="cyber-btn" id="themeBtn" onclick="toggleTheme()" title="Alternar Modo Claro/Escuro">
       <span class="status-dot"></span>
-      <span>MODO: <strong id="themeText">LIGHT</strong></span>
+      <span>MODO: <strong id="themeText">AUTO</strong></span>
     </button>
 
     <button class="cyber-btn" id="musicBtn" onclick="toggleMusic()" title="Alternar Áudio">
-      <i class="fa-solid fa-volume-high" style="font-size: 10px; color: var(--accent-pink);"></i>
+      <i class="fa-solid fa-volume-high" style="font-size: 10px; color: var(--accent-cyan);"></i>
       <span>ÁUDIO: <strong id="musicText">OFF</strong></span>
     </button>
   </div>
@@ -695,7 +698,7 @@
     <!-- Interactive Roblox Items Showcase -->
     <section class="showcase-section">
       <div class="section-title">
-        <i class="fa-solid fa-bolt" style="color: var(--accent-pink);"></i>
+        <i class="fa-solid fa-bolt" style="color: var(--accent-cyan);"></i>
         Destaques Roblox
       </div>
       
@@ -714,7 +717,7 @@
 
         <!-- Item 2 -->
         <div class="product-card">
-          <div class="product-icon-wrap" style="color: var(--accent-pink);">
+          <div class="product-icon-wrap" style="color: var(--accent-cyan);">
             <i class="fa-solid fa-gem"></i>
           </div>
           <div>
@@ -797,7 +800,7 @@
     <div class="hud-modal-card">
       <a href="#" class="modal-close-btn" aria-label="Fechar">✕</a>
       <h2 class="modal-head-title">TERMOS DETOUR STORE</h2>
-      <p style="text-align: center; color: var(--accent-pink); font-size: 13px; font-weight: 600; margin-bottom: 16px;">
+      <p style="text-align: center; color: var(--accent-cyan); font-size: 13px; font-weight: 600; margin-bottom: 16px;">
         ♡ Ao realizar uma compra em nossa loja, você declara estar ciente e de acordo com os termos abaixo:
       </p>
       <div class="modal-info-card">
@@ -863,6 +866,9 @@
         document.addEventListener('click', playAudioOnce, { once: true });
         document.addEventListener('touchstart', playAudioOnce, { once: true });
       });
+
+      // Aplica o tema do sistema ao carregar a página
+      applySystemTheme();
     });
 
     function toggleMusic() {
@@ -877,17 +883,36 @@
       }
     }
 
-    // Theme Switcher Logic
-    function toggleTheme() {
+    // LÓGICA DE TEMA AUTOMÁTICO DO SISTEMA DO DISPOSITIVO
+    const darkModeQuery = window.matchMedia('(prefers-color-scheme: dark)');
+
+    function applyThemeState(isDark) {
       const body = document.body;
       const themeText = document.getElementById('themeText');
-      body.classList.toggle('dark-mode');
-      
-      if (body.classList.contains('dark-mode')) {
+
+      if (isDark) {
+        body.classList.add('dark-mode');
         themeText.textContent = 'DARK';
       } else {
+        body.classList.remove('dark-mode');
         themeText.textContent = 'LIGHT';
       }
+    }
+
+    function applySystemTheme() {
+      applyThemeState(darkModeQuery.matches);
+    }
+
+    // Escuta mudanças automáticas de tema no sistema operacional do dispositivo
+    darkModeQuery.addEventListener('change', (e) => {
+      applyThemeState(e.matches);
+    });
+
+    // Clique manual no botão alterna o tema manualmente
+    function toggleTheme() {
+      const body = document.body;
+      const isCurrentlyDark = body.classList.contains('dark-mode');
+      applyThemeState(!isCurrentlyDark);
     }
   </script>
 </body>
